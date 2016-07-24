@@ -4,16 +4,16 @@ var site = {
   // configurations.
   // Would be nice to generate this from the template defintions to keep things dry.
   "views" : {
-    "/speaking" : {
-      "url": ["/api/speaking.json"],
-      "template": "speaking",
+    "/on" : {
+      "url": ["/api/nights.json"],
+      "template": "night",
     },
-    "/links" : {
-      "url": ["/api/links.json"],
-      "template": "links",
+    "/featuring" : {
+      "url": ["/api/performers.json"],
+      "template": "performers",
     },
     "/" :  {
-      "url": ["/api/speaking.json", "/api/links.json"],
+      "url": ["/api/nights.json"],
       "template": "index",
     }
   },

@@ -7,6 +7,7 @@ const fm = require('front-matter');
 const clean = require('gulp-clean');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
+const sass = require('gulp-sass');
 const webserver = require('gulp-webserver');
 const prettyUrl = require("gulp-pretty-url");
 const runSequence = require('run-sequence');
@@ -77,6 +78,20 @@ gulp.task('scripts', () =>
 );
 
 
+// Compile CSS from Sass
+gulp.task('sass', () =>
+  gulp.src(['sass/**/*.scss'])
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(gulp.dest('dist/style'))
+);
+
+
+gulp.task('sass:watch', () =>
+  gulp.watch('sass/**/*.scss', ['sass'])
+);
+
+
+
 // serve the static dist folder
 gulp.task('serve', function() {
   gulp.src('dist')
@@ -96,6 +111,6 @@ gulp.task('serve', function() {
 
 gulp.task('default', function(callback) {
   runSequence('clean',
-              ['generate','scripts', 'precompile', 'api'],
+              ['generate','scripts', 'sass', 'precompile', 'api'],
               callback);
 });

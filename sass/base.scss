@@ -1,0 +1,23 @@
+$link-color : #ff2255;
+$link-color-bright : lighten($link-color, 20%);
+
+
+body {
+    color: #666;
+    font-family: sans-serif;
+}
+
+a {
+
+    text-decoration: none;
+
+    &:visited,
+    &:link {
+        color: $link-color;
+    }
+
+    &:hover,
+    &:focus {
+        color: $link-color-bright;
+    }
+}
