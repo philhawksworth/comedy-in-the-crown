@@ -1,0 +1,29 @@
+{
+  "name": "gulp-short",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "front-matter": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-data": "^1.2.1",
+    "gulp-nunjucks": "^2.2.0",
+    "gulp-pretty-url": "^0.1.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.4",
+    "jshint": "^2.9.2",
+    "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "gulp-webserver": "^0.9.1",
+    "jbone": "^1.2.0",
+    "reqwest": "^2.0.5"
+  }
+}

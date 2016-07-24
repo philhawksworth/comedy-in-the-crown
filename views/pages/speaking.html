@@ -1,0 +1,8 @@
+<h1>speaking</h1>
+<ul>
+  {% for item in api.speaking %}
+    <li><a href="{{ item.url}}">{{ item.name }}</a></li>
+  {% else %}
+    <li>This would display if the 'item' collection were empty</li>
+  {% endfor %}
+</ul>
