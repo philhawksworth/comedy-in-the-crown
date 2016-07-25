@@ -1,8 +1,10 @@
 // const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 const gulp = require('gulp');
 const data = require('gulp-data');
 const nunjucks = require('gulp-nunjucks');
+const dateFilter = require('nunjucks-date-filter');
 const fm = require('front-matter');
 const clean = require('gulp-clean');
 const concat = require('gulp-concat');
@@ -11,9 +13,10 @@ const sass = require('gulp-sass');
 const webserver = require('gulp-webserver');
 const prettyUrl = require("gulp-pretty-url");
 const runSequence = require('run-sequence');
-const contentful = require('contentful')
+const contentful = require('contentful');
 
 
+// set up the contentful query client
 var client = contentful.createClient({
   space: 'ot0mnooc6nee', 
   accessToken: 'c685bb6a2978131d6e287e6e1a6c1b1b71ce6cf3c7a3be2caa43cc6b4ec580eb'
@@ -69,18 +72,43 @@ gulp.task('api', () =>
 
 
 // copy the api files to the output directory
-gulp.task('content', () =>
-  client.getContentType('event')
-    .then((entry) => console.log(entry))
+gulp.task('get:acts', () =>
+  client.getEntries({'content_type':'act'})
+    .then(
+      function(resp) {
+        var dataObject = [];
+        for (var item = 0; item < resp.items.length; item++) {
+          dataObject.push(resp.items[item].fields)
+        }
+        fs.writeFileSync('api/acts.json', JSON.stringify(dataObject)); 
+      }
+    )
 );
 
 
 
-// This API call will request an entry with the specified ID from the space defined at the top, using a space-specific access token. 
-// client.getContentType('event')
-// .then((entry) => console.log(entry))
+gulp.task('get:nights', () =>
+  client.getEntries({'content_type':'event'})
+    .then(
+      function(resp) {
+        var dataObject = [];
+        for (var item = 0; item < resp.items.length; item++) {
+          var thisNight = resp.items[item].fields;
+          var thisNightsActs = [];
+          for (var night = 0; night < resp.items[item].fields.performers.length; night++) {
+            thisNightsActs.push(resp.items[item].fields.performers[night].fields);
+            
+          }
+          delete thisNight.performers;
+          thisNight.acts = thisNightsActs;
+          dataObject.push(thisNight);
+        }
+        fs.writeFileSync('api/nights.json', JSON.stringify(dataObject)); 
+      }
+    )
+);
 
-
+gulp.task('get', ['get:acts', 'get:nights']);
 
 
 

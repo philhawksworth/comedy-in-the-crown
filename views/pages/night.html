@@ -1,8 +1,19 @@
 <h1>Links</h1>
 <ul>
   {% for item in api.nights %}
-    <li><a href="{{ item.url}}">{{ item.name }}</a></li>
-  {% else %}
-    <li>This would display if the 'item' collection were empty</li>
+    <li>
+      <a href="/on/{{ item.datetime }}">{{ item.strapLine }}</a>
+      <p>{{ item.description }}</p>
+      <h3>Featuring</h3>
+      <ul>
+        {% for act in item.acts %}
+          {% if act.link %}
+          <li><a href="{{ act.link }}">{{ act.name }}</a></li>
+          {% else %}
+          <li>{{ act.name }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </li>
   {% endfor %}
 </ul>

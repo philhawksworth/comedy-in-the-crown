@@ -9,7 +9,7 @@ var site = {
       "template": "night",
     },
     "/featuring" : {
-      "url": ["/api/performers.json"],
+      "url": ["/api/acts.json"],
       "template": "performers",
     },
     "/" :  {
@@ -23,7 +23,7 @@ var site = {
   addEventHandlers : function () {
     // hijack links which are root relative
     var dynamicPageLinks = document.querySelectorAll("[href^='/']");
-    $('a').on("click", function(e){
+    $(dynamicPageLinks).on("click", function(e){
       e.preventDefault();
       site.loadPage(e.target.pathname);
       site.setAddress(e.target.pathname);
@@ -92,6 +92,8 @@ var site = {
 };
 
 // Bind event losteners when the DOM is ready
-document.addEventListener("DOMContentLoaded", function(event) {
+
+$( document ).ready(function() {
   site.addEventHandlers();
 });
+

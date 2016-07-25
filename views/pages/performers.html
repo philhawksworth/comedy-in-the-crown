@@ -1,7 +1,11 @@
 <h1>speaking</h1>
 <ul>
-  {% for item in api.performers %}
-    <li><a href="{{ item.url}}">{{ item.name }}</a></li>
+  {% for item in api.acts %}
+    {% if item.link %}
+    <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+    {% else %}
+    <li>{{ item.name }}</li>
+    {% endif %}
   {% else %}
     <li>This would display if the 'item' collection were empty</li>
   {% endfor %}

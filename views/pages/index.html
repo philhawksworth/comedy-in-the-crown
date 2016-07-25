@@ -1,9 +1,21 @@
-<h1>home</h1>
+<h1>Comedy in the Crown</h1>
+<p>
+  A free open mic comedy night in St Albans in a beautiful Hertfordshire pub, just 20 minutes from London Kings Cross Station
+</p>
+<h2>Our next gig</h2>
+{% set night = api.nights | first %}
+<time datetime="  {{ night.date }}">
+  {{ night.date }}
+</time>
+<p>
+  {{ night.description }}
+</p>
+<h3>Featuring</h3>
 <ul>
-  {% for item in api.nights %}
-    <li><a href="{{ item.url}}">{{ item.name }}</a></li>
-  {% else %}
-    <li>This would display if the 'item' collection were empty</li>
-  {% endfor %}
+  <li>list</li>
+  <li>of</li>
+  <li>acts</li>
 </ul>
+<p>with your host for the night: <span>tonight's MC</span></p>
+<h2 id="where">Where to find us</h2>
 
