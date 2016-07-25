@@ -11,6 +11,13 @@ const sass = require('gulp-sass');
 const webserver = require('gulp-webserver');
 const prettyUrl = require("gulp-pretty-url");
 const runSequence = require('run-sequence');
+const contentful = require('contentful')
+
+
+var client = contentful.createClient({
+  space: 'ot0mnooc6nee', 
+  accessToken: 'c685bb6a2978131d6e287e6e1a6c1b1b71ce6cf3c7a3be2caa43cc6b4ec580eb'
+});
 
 
 // Clean up output directories
@@ -59,6 +66,24 @@ gulp.task('api', () =>
 );
 
 
+
+
+// copy the api files to the output directory
+gulp.task('content', () =>
+  client.getContentType('event')
+    .then((entry) => console.log(entry))
+);
+
+
+
+// This API call will request an entry with the specified ID from the space defined at the top, using a space-specific access token. 
+// client.getContentType('event')
+// .then((entry) => console.log(entry))
+
+
+
+
+
 // Compile the client-side templates
 gulp.task('precompile', () =>
   gulp.src('views/pages/*.html')
@@ -104,13 +129,10 @@ gulp.task('serve', function() {
 
 
 
-
-
-
-// gulp.task('default', ['clean','generate','scripts', 'precompile', 'api']);
-
 gulp.task('default', function(callback) {
-  runSequence('clean',
-              ['generate','scripts', 'sass', 'precompile', 'api'],
-              callback);
+  runSequence(
+    'clean',
+    ['generate','scripts', 'sass', 'precompile', 'api'],
+    callback
+  );
 });
