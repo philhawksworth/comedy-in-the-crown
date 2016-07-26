@@ -56,12 +56,6 @@ gulp.task('generate', () =>
 );
 
 
-// TODO: get data from cloud cms and stash in local api
-gulp.task('data-sync', () =>
-  console.log("getting data")
-);
-
-
 // copy the api files to the output directory
 gulp.task('api', () =>
   gulp.src('api/**/*.json')
@@ -70,8 +64,7 @@ gulp.task('api', () =>
 
 
 
-
-// copy the api files to the output directory
+// Get the Acts data from the cloud CMS and stash it locally
 gulp.task('get:acts', () =>
   client.getEntries({'content_type':'act'})
     .then(
@@ -87,6 +80,7 @@ gulp.task('get:acts', () =>
 
 
 
+// Get the Nights data from the cloud CMS and stash it locally
 gulp.task('get:nights', () =>
   client.getEntries({'content_type':'event'})
     .then(
@@ -108,6 +102,7 @@ gulp.task('get:nights', () =>
     )
 );
 
+// Get data from the cloud CMS and stash it locally
 gulp.task('get', ['get:acts', 'get:nights']);
 
 
@@ -156,11 +151,20 @@ gulp.task('serve', function() {
 });
 
 
-
-gulp.task('default', function(callback) {
+// Our task runners
+gulp.task('default', ['build:local']);
+gulp.task('build:local', function(callback) {
   runSequence(
     'clean',
     ['generate','scripts', 'sass', 'precompile', 'api'],
+    callback
+  );
+});
+
+gulp.task('build:prod', function(callback) {
+  runSequence(
+    'get',
+    'build:local',
     callback
   );
 });
