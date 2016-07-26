@@ -129,7 +129,7 @@ gulp.task('scripts', () =>
 // Compile CSS from Sass
 gulp.task('sass', () =>
   gulp.src(['sass/**/*.scss'])
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed', includePaths: ['./sass/include']}).on('error', sass.logError))
     .pipe(gulp.dest('dist/style'))
 );
 
@@ -153,6 +153,7 @@ gulp.task('serve', function() {
 
 // Our task runners
 gulp.task('default', ['build:local']);
+
 gulp.task('build:local', function(callback) {
   runSequence(
     'clean',
