@@ -4,7 +4,7 @@
 </p>
 <h2>Our next gig</h2>
 {% set night = api.nights | first %}
-<time datetime="  {{ night.date }}">
+<time datetime="{{ night.date }}">
   {{ night.date }}
 </time>
 <p>
@@ -12,9 +12,15 @@
 </p>
 <h3>Featuring</h3>
 <ul>
-  <li>list</li>
-  <li>of</li>
-  <li>acts</li>
+  {% for item in night.acts|sort(attribute='name') %}
+    {%- if item.link %}
+    <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+    {%- else -%}
+    <li>{{ item.name }}</li>
+    {%- endif -%}
+  {%- else -%}
+    <li>This would display if the 'item' collection were empty</li>
+  {% endfor %}
 </ul>
 <p>with your host for the night: <span>tonight's MC</span></p>
 <h2 id="where">Where to find us</h2>
