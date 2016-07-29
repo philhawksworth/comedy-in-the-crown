@@ -56,6 +56,8 @@ gulp.task('generate', () =>
 );
 
 
+
+
 // copy the api files to the output directory
 gulp.task('api', () =>
   gulp.src('api/**/*.json')
@@ -125,6 +127,13 @@ gulp.task('scripts', () =>
     .pipe(gulp.dest('dist/js'))
 );
 
+// Combine and compress javascript
+gulp.task('images', () =>
+  gulp.src(['images/*'])
+    .pipe(gulp.dest('dist/images'))
+);
+
+
 
 // Compile CSS from Sass
 gulp.task('sass', () =>
@@ -136,6 +145,9 @@ gulp.task('sass', () =>
 
 gulp.task('sass:watch', () =>
   gulp.watch('sass/**/*.scss', ['sass'])
+);
+gulp.task('templates:watch', () =>
+  gulp.watch('views/**/*.html', ['generate','precompile'])
 );
 
 
@@ -153,11 +165,12 @@ gulp.task('serve', function() {
 
 // Our task runners
 gulp.task('default', ['build:local']);
+gulp.task('watch', ['sass:watch', 'templates:watch']);
 
 gulp.task('build:local', function(callback) {
   runSequence(
     'clean',
-    ['generate','scripts', 'sass', 'precompile', 'api'],
+    ['generate', 'images', 'scripts', 'sass', 'precompile', 'api'],
     callback
   );
 });

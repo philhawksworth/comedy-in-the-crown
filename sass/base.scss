@@ -1,9 +1,25 @@
 @import 'variables';
+@import 'mixins';
+@import 'type';
 
+
+* {
+    margin:0;
+    padding:0
+}
 
 body {
     color: #666;
+    background: $page-color;
     font-family: sans-serif;
+    line-height: 1.4em;
+}
+
+.container {
+    // width:900px;
+    margin:0 auto;
+    text-align: left;
+    padding: 2em;
 }
 
 a {
@@ -19,4 +35,68 @@ a {
     &:focus {
         color: $link-color-bright;
     }
+}
+
+.navigation {
+
+    list-style: none;
+
+    li {
+        display: inline;
+        padding: 0.2em 0.5em;
+    }
+
+    a {
+        &:visited,
+        &:link,
+        &:active {
+            color: #fff;
+        }
+
+        &:hover,
+        &:focus {
+            color: transparent;
+            background-color: #fff;
+            border-radius: 3px;
+        }
+    }
+}
+
+header, 
+footer {
+    // padding: 1em;
+    text-align: center;
+}
+
+header {
+    float: left;
+    width: 100%;
+}
+
+.content {
+   background: #eeeedd; 
+   text-align: center;
+}
+
+.listing {
+    list-style: none;
+    padding: 1em;
+}
+
+.hero {
+    color: #fff;
+    height: 300px;
+    background: url('/images/red-stage-curtain.jpg') bottom center;
+    padding: 8em 2em 2em 2em;
+    text-align: center;
+
+    p {
+        width:400px;
+        margin: 1em auto;
+    }
+}
+
+
+.badge {
+    @include circle(200px, #fff, inline-block);
 }

@@ -3,19 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Comedy in the Crown</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="/style/base.css">
     <script src="/js/concat.js" async></script>
     <script src="/js/templates.js" async></script>
   </head>
-  <body>
+  <body class="{{ pageClass }}" >
     <header>
+      <div class="container">
     {% include "../partials/navigation.html" %}
+      </div>
     </header>
     <div class="content">
       {% block content %}{% endblock %}
     </div>
     <footer>
+      <div class="container">
     {% include "partials/navigation.html" %}
+      </div>
     </footer>
   </body>
 </html>

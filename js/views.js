@@ -69,7 +69,7 @@ var site = {
   // apply the template and insert it into the page
   render : function (data, template) {
      var output = nunjucks.render(template + ".html", data);
-    $('.content').html(output);
+    $('.content .container').html(output);
   },
 
 

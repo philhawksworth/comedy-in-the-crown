@@ -1,27 +1,36 @@
-<h1>Comedy in the Crown</h1>
-<p>
-  A free open mic comedy night in St Albans in a beautiful Hertfordshire pub, just 20 minutes from London Kings Cross Station
-</p>
-<h2>Our next gig</h2>
-{% set night = api.nights | first %}
-<time datetime="{{ night.date }}">
-  {{ night.date }}
-</time>
-<p>
-  {{ night.description }}
-</p>
-<h3>Featuring</h3>
-<ul>
-  {% for item in night.acts|sort(attribute='name') %}
-    {%- if item.link %}
-    <li><a href="{{ item.link }}">{{ item.name }}</a></li>
-    {%- else -%}
-    <li>{{ item.name }}</li>
-    {%- endif -%}
-  {%- else -%}
-    <li>This would display if the 'item' collection were empty</li>
-  {% endfor %}
-</ul>
-<p>with your host for the night: <span>tonight's MC</span></p>
-<h2 id="where">Where to find us</h2>
+{% set pageClass = "home" %}
 
+
+
+<div class="hero">
+  <h1 class="badge">Comedy in the Crown</h1>
+  <p>
+    A free open mic comedy night in St Albans in a beautiful Hertfordshire pub, just 20 minutes from London Kings Cross Station
+  </p>
+</div>
+
+
+<div class="container">
+  <h2>Our next gig</h2>
+  {% set night = api.nights | first %}
+  <time datetime="{{ night.date }}">
+    {{ night.date }}
+  </time>
+  <p>
+    {{ night.description }}
+  </p>
+  <h3>Featuring</h3>
+  <ul class="listing">
+    {% for item in night.acts|sort(attribute='name') %}
+      {%- if item.link %}
+      <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+      {%- else -%}
+      <li>{{ item.name }}</li>
+      {%- endif -%}
+    {%- else -%}
+      <li>This would display if the 'item' collection were empty</li>
+    {% endfor %}
+  </ul>
+  <p>with your host for the night: <span>tonight's MC</span></p>
+  <h2 id="where">Where to find us</h2>
+  </div>
