@@ -1,10 +1,9 @@
-// const fs = require('fs');
 const path = require('path');
 const fs = require('fs');
 const gulp = require('gulp');
 const data = require('gulp-data');
 const nunjucks = require('gulp-nunjucks');
-const dateFilter = require('nunjucks-date-filter');
+// const dateFilter = require('nunjucks-date-filter');
 const fm = require('front-matter');
 const clean = require('gulp-clean');
 const concat = require('gulp-concat');
