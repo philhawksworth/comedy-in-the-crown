@@ -28,7 +28,7 @@ header {
         @include circle(80px, #fff, inline-block);
         text-indent: -9999px;
         overflow: none;
-
+        transition:all 0.3s ease;
 
         @include bp(mid) {
             @include circle(100px, #fff, inline-block);
@@ -37,6 +37,13 @@ header {
             @include circle(140px, #fff, inline-block);
         } 
 
+    }
+
+    .home:hover {
+        
+        -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(15.3);
     }
 
     .acts,

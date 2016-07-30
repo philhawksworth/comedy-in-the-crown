@@ -68,11 +68,12 @@ h3 {
     } 
     @include bp(mid) {
         font-size: 4em;
+        padding-bottom: 0.3em;
     }
     @include bp(wide) {
         font-size: 6em;
         padding-bottom: 0.4em;
-        margin-bottom: 0.6em;
+        margin-bottom: 0.3em;
     } 
 }
 
@@ -108,7 +109,7 @@ a {
         }
         &:hover,
         &:focus {
-            color: transparent;
+            color: #880000;
             background-color: #fff;
         }
     }

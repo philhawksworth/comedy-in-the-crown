@@ -8,6 +8,10 @@ var site = {
       "url": ["/api/nights.json"],
       "template": "dates",
     },
+    "/on/*" : {
+      "url": ["/api/nights.json"],
+      "template": "night",
+    },
     "/featuring" : {
       "url": ["/api/acts.json"],
       "template": "performers",
@@ -62,6 +66,10 @@ var site = {
           results.api[objName] = arguments[result][0];
         }
       }
+
+      console.log('PATH', path);
+      
+
       // render the data into a template
       site.render(results, view.template);
     });

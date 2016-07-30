@@ -4,27 +4,33 @@
 <div class="hero">
   <h1>Our gig nights</h1>
   <p>
-    Details of all of our nights. Past and planned.
+    Comedy nights at The Crown are held on the first and thrid Tuesdays of every month.
   </p>
 </div>
 <div class="container">
-    <ul class="listing">
-    {% for item in api.nights %}
-        <li>
-        <h2><a href="/on/{{ item.date }}">{{ item.date }}</a></h2>
+  <ul class="listing">
+    {% for item in api.nights | sort(attribute='date') %}
+      <li>
+        <h2><a href="/on/{{ item.url }}">{{ item.dateDisplay }}</a></h2>
         <h3>{{ item.strapLine }}</h3>
         <p>{{ item.description }}</p>
-        <h4>Featuring</h4>
+        <h3>Featuring</h3>
         <ul class="listing">
-            {% for act in item.acts %}
+          {% for act in item.acts %}
             {% if act.link %}
             <li><a href="{{ act.link }}">{{ act.name }}</a></li>
             {% else %}
             <li>{{ act.name }}</li>
             {% endif %}
-            {% endfor %}
+          {% endfor %}
         </ul>
-        </li>
+        <p>and our MC for the the night: {{ item.mc.name }}</p>
+        <p>Find more details and post photos on the event's <a href="">Facebook page</a></p>
+      </li>
+      {% if not loop.last %}
+      <hr class="stamp">
+      {% endif %}
+
     {% endfor %}
-    </ul>
+  </ul>
 </div>

@@ -3,7 +3,7 @@ const fs = require('fs');
 const gulp = require('gulp');
 const data = require('gulp-data');
 const nunjucks = require('gulp-nunjucks');
-// const dateFilter = require('nunjucks-date-filter');
+const nun = require('nunjucks');
 const fm = require('front-matter');
 const clean = require('gulp-clean');
 const concat = require('gulp-concat');
@@ -13,6 +13,8 @@ const webserver = require('gulp-webserver');
 const prettyUrl = require("gulp-pretty-url");
 const runSequence = require('run-sequence');
 const contentful = require('contentful');
+const moment = require('moment');
+const mkdirp = require('mkdirp');
 
 
 // set up the contentful query client
@@ -57,6 +59,45 @@ gulp.task('generate', () =>
 
 
 
+// var getDirName = path.dirname;
+
+// function writeFile(path, contents, cb) {
+//   mkdirp(getDirName(path), function (err) {
+//     if (err) return cb(err);
+//     fs.writeFile(path, contents, cb);
+//   });
+// }
+
+// gulp.task('generate:events', () =>
+//   gulp.src('api/nights.json')
+//     .pipe(data(function(file) {
+//       var nights = JSON.parse(file.contents);
+//       for (var night = 0; night < nights.length; night++) {
+//         var element = nights[night];
+//         return nunjucks.compile('views/night.html', element);
+//         // writeFile('dist/on/' + element.url + '/index.html', html); 
+//       }
+
+//     }))
+//     .pipe(prettyUrl())
+//     .pipe(gulp.dest('dist/on/'))
+// );
+
+
+// gulp.task('nun', function(){
+//   var data = require('./api/nights.json');
+//   nunjucks.configure('views', { autoescape: true });
+//   for (var item = 0; item < data.length; item++) {
+//     var element = data[item];
+//     var out = nun.render('night.html', data[item]);
+//     console.log(out);
+   
+//   }
+
+// });
+
+
+
 // copy the api files to the output directory
 gulp.task('api', () =>
   gulp.src('api/**/*.json')
@@ -92,10 +133,21 @@ gulp.task('get:nights', () =>
           var thisNightsActs = [];
           for (var night = 0; night < resp.items[item].fields.performers.length; night++) {
             thisNightsActs.push(resp.items[item].fields.performers[night].fields);
-            
           }
           delete thisNight.performers;
+
+          // format the date (until numjucks format support)
+          thisNight.dateDisplay = moment(thisNight.date).format("ddd, MMM Do YYYY");
+          thisNight.url = moment(thisNight.date).format("YYY-MM-DD");
           thisNight.acts = thisNightsActs;
+
+          // format the mc data
+          if(thisNight.mc) {
+            var mc = thisNight.mc.fields;
+            delete thisNight.mc;
+            thisNight.mc = mc;
+          }
+
           dataObject.push(thisNight);
         }
         fs.writeFileSync('api/nights.json', JSON.stringify(dataObject)); 

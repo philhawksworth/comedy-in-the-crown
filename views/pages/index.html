@@ -10,13 +10,11 @@
 
 <div class="container">
   <h2>Our next comedy night</h2>
-  <p>
-    Comedy nights at The Crown are held on the first and thrid Tuesdays of every month. The next comedy night will be:
-  </p>
-  {% set night = api.nights | first %}
+  {% set night = api.nights | last %}
   <time class="next-night" datetime="{{ night.date }}">
-    {{ night.date }}
+    {{ night.dateDisplay }}
   </time>
+  <h3>{{ night.strapLine }}</h3>
   <p>
     {{ night.description }}
   </p>
@@ -35,7 +33,7 @@
       <li>This would display if the 'item' collection were empty</li>
     {% endfor %}
   </ul>
-  <p>And your host for the night: <span>tonight's MC</span></p>
+  <p>And your host for the night: <span>{{ night.mc.name }}</span></p>
    
   <h2 id="where">Where to find us</h2>
   <p>

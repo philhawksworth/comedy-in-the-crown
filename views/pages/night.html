@@ -9,9 +9,9 @@
 </div>
 <div class="container">
   <ul class="listing">
-    {% for item in api.nights %}
+    {% for item in api.nights | selectattr("url", path) %}
       <li>
-        <h2><a href="/on/{{ item.date }}">{{ item.date }}</a></h2>
+        <h2>{{ item.dateDisplay }}</h2>
         <h3>{{ item.strapLine }}</h3>
         <p>{{ item.description }}</p>
         <h3>Featuring</h3>
@@ -24,7 +24,7 @@
             {% endif %}
           {% endfor %}
         </ul>
-        <p>and our MC for the the night: {{ item.mc }}</p>
+        <p>and our MC for the the night: {{ item.mc.name }}</p>
         <p>Find more details and post photos on the event's <a href="">Facebook page</a></p>
       </li>
       {% if not loop.last %}
