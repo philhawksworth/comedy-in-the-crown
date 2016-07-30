@@ -11,6 +11,7 @@
 
 body {
     background: $page-color;
+    text-align: center;
 }
 
 .container {
@@ -18,60 +19,13 @@ body {
     padding: 2em;
 }
 
-a {
-
-    text-decoration: none;
-
-    &:visited,
-    &:link,
-    &:active {
-        color: $link-color;
-    }
-
-    &:hover,
-    &:focus {
-        color: $link-color-bright;
-    }
-}
-
-.navigation {
-
-    list-style: none;
-
-    li {
-        display: inline;
-        padding: 0.2em 0.5em;
-    }
-
-    a {
-        &:visited,
-        &:link,
-        &:active {
-            color: #fff;
-            // border-radius: 3px;
-        }
-
-        &:hover,
-        &:focus {
-            color: transparent;
-            background-color: #fff;
-        }
-    }
-}
-
-
-header, 
-footer {
-    // padding: 1em;
-    text-align: center;
-}
 
 header {
     float: left;
     width: 100%;
 
     .home {
-        @include circle(120px, #fff, inline-block);
+        @include circle(60px, #fff, inline-block);
         line-height: 1em;
         text-indent: -9999px;
         overflow: none;
@@ -81,7 +35,7 @@ header {
     .dates {
         border-top: solid 2px #fff;
         border-bottom: solid 2px #fff;
-        padding:1em 3em;
+        padding:0.5em 1em;
     }
 
 }

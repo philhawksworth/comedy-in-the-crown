@@ -2,7 +2,8 @@ body {
     line-height: 1.6em;
     font-family: sans-serif;
     color: $text-color;
-    line-height: 1.6em;
+    font-size: $base-font-size;
+    font-weight: normal;
 }
 
 h1, h2, h3, h4 {
@@ -11,29 +12,61 @@ h1, h2, h3, h4 {
     font-weight: normal;
 }
 
-h1 {
-    font-size: 4em;
+h1 { 
+    font-size: 2.5em; 
     margin: 0.2em 0 1em;
+
+    @include bp(narrow) {
+        font-size: 3em;
+    } 
+    @include bp(mid) {
+        font-size: 4em;
+    }
+    @include bp(wide) {
+        font-size: 6em;
+    } 
+}
+h2 { font-size: 2em; margin: 0.2em 0 1em;}
+h3 { font-size: 1.8em; margin: 0.2em 0 1em;}
+h4 { font-size: 1.2em; margin: 0.2em 0 1em;}
+
+
+
+
+a {
+    text-decoration: none;
+    &:visited,
+    &:link,
+    &:active {
+        color: $link-color;
+    }
+    &:hover,
+    &:focus {
+        color: $link-color-bright;
+    }
 }
 
-h2 {
-    font-size: 3em;
-    margin: 0.2em 0 1em;
+.navigation {
+    list-style: none;
+    li {
+        display: inline;
+        padding: 0.2em 0.5em;
+    }
+    a {
+        &:visited,
+        &:link,
+        &:active {
+            color: #fff;
+        }
+        &:hover,
+        &:focus {
+            color: transparent;
+            background-color: #fff;
+        }
+    }
 }
 
-h3 {
-    font-size: 2.4em;
-    margin: 0.2em 0 0.5em;
-}
 
-h4 {
-    font-size: 2em;
-    margin: 0.2em 0 0.5em;
-}
-
-p {
-    text-align: left;
-}
 
 .next-night {
     display: block;
@@ -57,6 +90,13 @@ p {
 
 .word-mark {
     display: inline-block;
-    padding:0 0 0.3em;
-    border-bottom: solid 6px #fff;
+    padding:0 0 0.2em;
+    border-bottom: solid 0.12em #fff;
+
+    @include bp(narrow) {
+        padding-bottom: 0.3em;
+    } 
+    @include bp(wide) {
+        padding-bottom: 0.4em;
+    } 
 }
