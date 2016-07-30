@@ -1,9 +1,12 @@
 {% set pageClass = "acts" %}
 
-<h1>Performers</h1>
-<p>
-  We have been delighted to have had performances from this all of these lovely people
-</p>
+<div class="hero">
+  <h1>Performers</h1>
+  <p>
+    We have been delighted to have had performances from this all of these lovely people
+  </p>
+</div>
+
 <ul class="listing">
   {% for item in api.acts|sort(attribute='name') %}
     {% if item.link %}

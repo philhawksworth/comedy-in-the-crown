@@ -1,0 +1,30 @@
+{% set pageClass = "dates" %}
+
+
+<div class="hero">
+  <h1>Our gig nights</h1>
+  <p>
+    Details of all of our nights. Past and planned.
+  </p>
+</div>
+<div class="container">
+    <ul class="listing">
+    {% for item in api.nights %}
+        <li>
+        <h2><a href="/on/{{ item.date }}">{{ item.date }}</a></h2>
+        <h3>{{ item.strapLine }}</h3>
+        <p>{{ item.description }}</p>
+        <h4>Featuring</h4>
+        <ul class="listing">
+            {% for act in item.acts %}
+            {% if act.link %}
+            <li><a href="{{ act.link }}">{{ act.name }}</a></li>
+            {% else %}
+            <li>{{ act.name }}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        </li>
+    {% endfor %}
+    </ul>
+</div>

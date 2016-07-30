@@ -4,9 +4,9 @@ var site = {
   // configurations.
   // Would be nice to generate this from the template defintions to keep things dry.
   "views" : {
-    "/on" : {
+    "/dates" : {
       "url": ["/api/nights.json"],
-      "template": "night",
+      "template": "dates",
     },
     "/featuring" : {
       "url": ["/api/acts.json"],
@@ -69,7 +69,7 @@ var site = {
   // apply the template and insert it into the page
   render : function (data, template) {
      var output = nunjucks.render(template + ".html", data);
-    $('.content .container').html(output);
+    $('.content').html(output);
   },
 
 
