@@ -1,15 +1,62 @@
+body {
+    line-height: 1.6em;
+    font-family: sans-serif;
+    color: $text-color;
+    line-height: 1.6em;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'league_gothicregular';
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
 h1 {
-    line-height: 1.2em;
-    margin: 0.2em 0 0.8em;
+    font-size: 4em;
+    margin: 0.2em 0 1em;
 }
 
 h2 {
-    line-height: 1.1em;
-    margin: 0.2em 0 0.8em;
+    font-size: 3em;
+    margin: 0.2em 0 1em;
 }
 
 h3 {
-    line-height: 1.1em;
-    margin: 0.2em 0 0.8em;
+    font-size: 2.4em;
+    margin: 0.2em 0 0.5em;
 }
 
+h4 {
+    font-size: 2em;
+    margin: 0.2em 0 0.5em;
+}
+
+p {
+    text-align: left;
+}
+
+.next-night {
+    display: block;
+    margin:1em auto;
+    font-size: 2em;
+    background-color: $link-color;
+    color:#fff;
+    padding: 1em;
+    border-radius: 2px;
+}
+
+.button {
+    display: inline-block;
+    margin:1em auto;
+    font-size: 2em;
+    border: solid 2px $link-color;
+    color:#fff;
+    padding: 1em;
+    border-radius: 2px;
+}
+
+.word-mark {
+    display: inline-block;
+    padding:0 0 0.3em;
+    border-bottom: solid 6px #fff;
+}

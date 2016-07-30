@@ -1,25 +1,29 @@
 {% set pageClass = "home" %}
 
 
-
 <div class="hero">
-  <h1 class="badge">Comedy in the Crown</h1>
+  <h1 class="word-mark">Comedy in the Crown</h1>
   <p>
-    A free open mic comedy night in St Albans in a beautiful Hertfordshire pub, just 20 minutes from London Kings Cross Station
+    A free open mic comedy night in St Albans in a beautiful Hertfordshire pub, just 20 minutes from London's Kings Cross Station
   </p>
 </div>
 
-
 <div class="container">
-  <h2>Our next gig</h2>
+  <h2>Our next comedy night</h2>
+  <p>
+    Comedy nights at The Crown are held on the first and thrid Tuesdays of every month. The next comedy night will be:
+  </p>
   {% set night = api.nights | first %}
-  <time datetime="{{ night.date }}">
+  <time class="next-night" datetime="{{ night.date }}">
     {{ night.date }}
   </time>
   <p>
     {{ night.description }}
   </p>
-  <h3>Featuring</h3>
+  <h3>Our acts for the night</h3>
+  <p>
+    All of our open mic spots are 7 minutes long. Our next gig is featuring: 
+  </p>
   <ul class="listing">
     {% for item in night.acts|sort(attribute='name') %}
       {%- if item.link %}
@@ -31,6 +35,11 @@
       <li>This would display if the 'item' collection were empty</li>
     {% endfor %}
   </ul>
-  <p>with your host for the night: <span>tonight's MC</span></p>
+  <p>And your host for the night: <span>tonight's MC</span></p>
+   
   <h2 id="where">Where to find us</h2>
-  </div>
+  <p>
+    <a href="http://www.crownstalbans.com/">The Crown</a> is a lovely pub in St Albans. Just 20 minutes from Kings Cross station, we have a little more elbow room than you often find in London. The Crown also has excellent food and a cosy beer garden.
+  </p>
+  <a class="button" target="_BLANK" href="https://www.google.co.uk/maps/place/The+Crown/@51.7507318,-0.3273821,16.67z/data=!4m5!3m4!1s0x48763edc813a1c57:0x27ba9d9b63e26abe!8m2!3d51.751249!4d-0.3230882">Show me a map</a>
+</div>

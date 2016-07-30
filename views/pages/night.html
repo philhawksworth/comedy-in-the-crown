@@ -1,12 +1,14 @@
 {% set pageClass = "on" %}
 
-<h1>Links</h1>
+
+
 <ul class="listing">
   {% for item in api.nights %}
     <li>
-      <a href="/on/{{ item.datetime }}">{{ item.strapLine }}</a>
+      <h2><a href="/on/{{ item.date }}">{{ item.date }}</a></h2>
+      <h3>{{ item.strapLine }}</h3>
       <p>{{ item.description }}</p>
-      <h3>Featuring</h3>
+      <h4>Featuring</h4>
       <ul class="listing">
         {% for act in item.acts %}
           {% if act.link %}

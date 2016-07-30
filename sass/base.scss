@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'mixins';
+@import 'fonts';
 @import 'type';
 
 
@@ -9,16 +10,11 @@
 }
 
 body {
-    color: #666;
     background: $page-color;
-    font-family: sans-serif;
-    line-height: 1.4em;
 }
 
 .container {
-    // width:900px;
     margin:0 auto;
-    text-align: left;
     padding: 2em;
 }
 
@@ -27,7 +23,8 @@ a {
     text-decoration: none;
 
     &:visited,
-    &:link {
+    &:link,
+    &:active {
         color: $link-color;
     }
 
@@ -51,16 +48,17 @@ a {
         &:link,
         &:active {
             color: #fff;
+            // border-radius: 3px;
         }
 
         &:hover,
         &:focus {
             color: transparent;
             background-color: #fff;
-            border-radius: 3px;
         }
     }
 }
+
 
 header, 
 footer {
@@ -71,10 +69,25 @@ footer {
 header {
     float: left;
     width: 100%;
+
+    .home {
+        @include circle(120px, #fff, inline-block);
+        line-height: 1em;
+        text-indent: -9999px;
+        overflow: none;
+    }
+
+    .acts,
+    .dates {
+        border-top: solid 2px #fff;
+        border-bottom: solid 2px #fff;
+        padding:1em 3em;
+    }
+
 }
 
 .content {
-   background: #eeeedd; 
+   background: #f0f0f0; 
    text-align: center;
 }
 
@@ -94,9 +107,4 @@ header {
         width:400px;
         margin: 1em auto;
     }
-}
-
-
-.badge {
-    @include circle(200px, #fff, inline-block);
 }
