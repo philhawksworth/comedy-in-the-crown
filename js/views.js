@@ -27,6 +27,7 @@ var site = {
       e.preventDefault();
       site.loadPage(e.target.pathname);
       site.setAddress(e.target.pathname);
+      //todo: fire analytics
     });
     // perform client-side content render for browser history navigation
     window.onpopstate = function(e) {

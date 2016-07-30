@@ -29,6 +29,7 @@ h1 {
     @include bp(wide) {
         font-size: 6em;
         padding-bottom: 0.4em;
+        margin-bottom: 0.6em;
     } 
 }
 
