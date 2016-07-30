@@ -45,6 +45,7 @@ header {
 
    p {
        margin:0 auto 1em;
+       padding: 0 1 1em;
        width:90%;
 
         @include bp(narrow) {
@@ -61,7 +62,7 @@ header {
 
 .listing {
     list-style: none;
-    padding: 1em;
+    padding: 0 0 1em;
 }
 
 .hero {
@@ -69,4 +70,10 @@ header {
     background: url('/images/red-stage-curtain.jpg') bottom center;
     padding: 8em 2em 2em 2em;
     text-align: center;
+}
+
+hr.stamp {
+    border-style:none;
+    @include circle(40px, #000, block);
+    margin: 2.5em auto 2em;
 }

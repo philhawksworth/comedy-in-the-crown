@@ -33,10 +33,48 @@ h1 {
     } 
 }
 
-h2 { font-size: 2em; margin: 0.2em 0 1em;}
-h3 { font-size: 1.8em; margin: 0.2em 0 1em;}
-h4 { font-size: 1.2em; margin: 0.2em 0 1em;}
+h2 { 
+    font-size: 2.4em; 
+    margin: 1em 0 0.2em;
+    line-height: 1em;
 
+    
+    @include bp(narrow) {
+        font-size: 2.6em;
+        padding-bottom: 0.3em;
+    } 
+    @include bp(mid) {
+        font-size: 3em;
+    }
+    @include bp(wide) {
+        font-size: 4em;
+        padding-bottom: 0.4em;
+        margin-bottom: 0.6em;
+    }
+
+    a {
+        padding: 0;
+    }
+}
+
+h3 { 
+    font-size: 2em; 
+    margin: 0em 0 0.5em;
+    line-height: 0.9em;
+    
+    @include bp(narrow) {
+        font-size: 2.3em;
+        padding-bottom: 0.3em;
+    } 
+    @include bp(mid) {
+        font-size: 4em;
+    }
+    @include bp(wide) {
+        font-size: 6em;
+        padding-bottom: 0.4em;
+        margin-bottom: 0.6em;
+    } 
+}
 
 
 

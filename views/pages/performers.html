@@ -3,18 +3,20 @@
 <div class="hero">
   <h1>Performers</h1>
   <p>
-    Our family of performers keeps on growing and growing. From first-timers to professionls, we have been delighted to have had performances from this all of these lovely people. <a href="">Contact us on Facebook</a> if you want to join them.
+    Our family of performers keeps on growing and growing. From first-timers to professionls, we have been delighted to have had performances from all of these lovely people.
   </p>
 </div>
-
-<ul class="listing">
-  {% for item in api.acts|sort(attribute='name') %}
-    {% if item.link %}
-    <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+<div class="container">
+  <ul class="listing">
+    {% for item in api.acts|sort(attribute='name') %}
+      {% if item.link %}
+      <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+      {% else %}
+      <li>{{ item.name }}</li>
+      {% endif %}
     {% else %}
-    <li>{{ item.name }}</li>
-    {% endif %}
-  {% else %}
-    <li>This would display if the 'item' collection were empty</li>
-  {% endfor %}
-</ul>
+      <li>This would display if the 'item' collection were empty</li>
+    {% endfor %}
+  </ul>
+  <p><a href="">Contact us on Facebook</a> if you want to join them.</p>
+</div>
