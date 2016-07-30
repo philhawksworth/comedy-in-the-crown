@@ -28,6 +28,15 @@ header {
         @include circle(80px, #fff, inline-block);
         text-indent: -9999px;
         overflow: none;
+
+
+        @include bp(mid) {
+            @include circle(100px, #fff, inline-block);
+        }
+        @include bp(wide) {
+            @include circle(140px, #fff, inline-block);
+        } 
+
     }
 
     .acts,
