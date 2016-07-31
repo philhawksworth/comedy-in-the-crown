@@ -84,6 +84,7 @@ a {
     &:link,
     &:active {
         color: $link-color-dark;
+        white-space: nowrap;
     }
     &:hover,
     &:focus {
