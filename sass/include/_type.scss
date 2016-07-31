@@ -126,8 +126,6 @@ header .navigation {
 }
 
 
-
-
 .next-night {
     display: block;
     margin:1em auto;
@@ -136,6 +134,31 @@ header .navigation {
     color:#fff;
     padding: 1em;
     border-radius: 2px;
+}
+
+.sticker-next {
+    border: solid 4px $link-color-dark;
+    color: $link-color-dark;
+    font-size: 1.2em;
+    padding: 0.4em 1em;
+    display: inline-block;
+    position: relative;
+    @include rotate(-5deg);
+    bottom: -45px;
+
+    @include bp(narrow) {
+        bottom: -55px;
+        left: -100px;
+    } 
+    @include bp(mid) {
+        bottom: -60px;
+        left: -100px;
+    }
+    @include bp(wide) {
+        font-size: 1.4em;
+        bottom: -80px;
+        left: -150px;
+    } 
 }
 
 .button {

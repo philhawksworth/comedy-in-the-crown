@@ -9,6 +9,7 @@
 </div>
 <div class="container">
   <ul class="listing">
+    <h2 class="sticker-next">Our next comedy night</h2>
     {% for item in api.nights | sort(true, attribute='date') %}
       <li>
         <h2>{{ item.dateDisplay }}</h2>
