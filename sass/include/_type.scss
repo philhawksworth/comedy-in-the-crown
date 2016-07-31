@@ -133,6 +133,7 @@ header .navigation {
 
 .sticker-next {
     border: solid 4px $link-color-dark;
+    border-radius: 3px;
     color: $link-color-dark;
     font-size: 1.2em;
     padding: 0.4em 1em;
@@ -183,21 +184,18 @@ a.map {
 
     @include bp(wide) {
         font-size: 2.2em;
-    } 
-    
+    }    
 }
 
 
 
 a.social {
-    
     display: inline-block;
     width: 50px;
     height:50px;
     text-indent: -9999px;
     overflow: none;
-    margin-top: 1em;
-
+    margin-top: 2em;
 
     &:hover,
     &:focus {
@@ -207,7 +205,6 @@ a.social {
 
     @include bp(wide) {
     } 
- 
 }
 
 a.twitter {
@@ -217,3 +214,36 @@ a.facebook {
     background-image: url('/images/facebook.svg');
 }
 
+footer {
+
+    padding-bottom: 2em;
+    
+
+    a {
+        margin: 0.25em;
+
+        &:visited,
+        &:link,
+        &:active {
+            color: #fff;
+        }
+
+    }
+
+    .meta {
+
+        font-size: 0.8em;
+        margin-top: 2em;
+        font-style: italic;
+        
+        a {
+
+            &:visited,
+            &:link,
+            &:active {
+                color: #999;
+            }
+        }
+    }
+
+}
