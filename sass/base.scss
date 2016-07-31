@@ -25,25 +25,35 @@ header {
     width: 100%;
     
     .home {
-        @include circle(80px, #fff, inline-block);
+        @include circle(80px, transparent, #fff, inline-block);
         text-indent: -9999px;
         overflow: none;
-
-        transition:all 0.3s ease;
-
+        background: url('/images/mic.png') no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        background-size:30%;
+        
         @include bp(mid) {
-            @include circle(100px, #fff, inline-block);
+            @include circle(100px, transparent, #fff, inline-block);
+            background: url('/images/mic.png') no-repeat;
+            background-position-x: center;
+            background-position-y: center;
+            background-size:35%;
         }
         @include bp(wide) {
-            @include circle(140px, #fff, inline-block);
+            @include circle(140px, transparent, #fff, inline-block);
+            background: url('/images/mic.png') no-repeat;
+            background-position-x: center;
+            background-position-y: center;
+            background-size:35%;
         } 
 
     }
 
     .home:hover {
-        -webkit-transform: scale(1.3);
-        -ms-transform: scale(1.3);
-        transform: scale(1.3);
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
     }
 
     .acts,
@@ -90,6 +100,21 @@ header {
 
 hr.stamp {
     border-style:none;
-    @include circle(40px, #000, block);
-    margin: 2.5em auto 2em;
+    @include circle(60px, #000, transparent, inline-block);
+    background-image: url('/images/mic.png');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size:30%;
+    overflow: none;
+    margin: 2em auto 1.5em;
+}
+
+img.mic {
+    width: 80px;
+    margin-bottom: -1em;
+
+    @include bp(wide) {
+        margin-bottom: -2em;
+    } 
 }

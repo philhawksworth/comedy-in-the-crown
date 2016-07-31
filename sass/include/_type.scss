@@ -77,7 +77,10 @@ h3.subtitle {
 
 
 a {
+
+    transition:all 0.3s ease;
     text-decoration: none;
+
     &:visited,
     &:link,
     &:active {
@@ -111,6 +114,17 @@ a {
         }
     }
 }
+
+header .navigation {
+
+    a.home {
+        &:hover,
+        &:focus {
+            background-color: transparent;
+        }
+    }
+}
+
 
 
 
