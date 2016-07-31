@@ -102,18 +102,11 @@ header {
     text-align: center;
 }
 
-.stamp {
+a.mic {
     border-style:none;
-    @include circle(60px, #000, transparent, inline-block);
     overflow: none;
     text-align: center;
-    &:hover,
-    &:focus {
-        @include circle(60px, #000, $link-color, inline-block);;
-    }
-}
-
-a.mic {
+    @include circle(60px, #000, transparent, inline-block);
     margin: 2em auto 1.5em;
     text-indent: -9999px;
     background-image: url('/images/mic.svg');
@@ -121,16 +114,30 @@ a.mic {
     background-position-x: center;
     background-position-y: center;
     background-size:30%;
+
+    &:hover,
+    &:focus {
+        @include circle(60px, #000, $link-color, inline-block);;
+    }
 }
 
 a.letter {
+    border-style:none;
+    overflow: none;
+    text-align: center;
+    @include circle(40px, #fff, transparent, inline-block);
     margin: 1em auto 0.5em;
-    color:#fff;
+    color:#999;
     font-family: 'league_gothicregular';
     text-transform: uppercase;
     font-weight: normal;
-    font-size: 1.8em;
-    line-height: 2;
+    font-size: 1.6em;
+    line-height: 1.7em;
+
+    &:hover,
+    &:focus {
+        @include circle(40px, #fff, $link-color, inline-block);;
+    }
 }
 
 img.mic {
