@@ -73,7 +73,7 @@ var site = {
   render : function (data, template) {
     var output = nunjucks.render(template + ".html", data);
     $('.content').html(output);
-    smoothScroll.animateScroll( '#top' );
+    smoothScroll.animateScroll(0);
     setTimeout(function(){
       $('header .home').removeClass('swell');
     }, 300);
