@@ -137,7 +137,7 @@ gulp.task('get:nights', () =>
           delete thisNight.performers;
 
           // format the date (until numjucks format support)
-          thisNight.dateDisplay = moment(thisNight.date).format("ddd, MMM Do YYYY");
+          thisNight.dateDisplay = moment(thisNight.date).format("MMMM Do YYYY");
           thisNight.url = moment(thisNight.date).format("YYY-MM-DD");
           thisNight.acts = thisNightsActs;
 

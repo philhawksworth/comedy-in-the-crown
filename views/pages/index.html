@@ -11,16 +11,14 @@
 <div class="container">
   <h2>Our next comedy night</h2>
   {% set night = api.nights | last %}
-  <time class="next-night" datetime="{{ night.date }}">
-    {{ night.dateDisplay }}
-  </time>
-  <h3>{{ night.strapLine }}</h3>
+  <h2>{{ night.dateDisplay }}</h2>
+  <h3 class="subtitle">{{ night.strapLine }}</h3>
   <p>
     {{ night.description }}
   </p>
   <h3>Our acts for the night</h3>
   <p>
-    All of our open mic spots are 7 minutes long. Our next gig is featuring: 
+    Our next open mic night features 7 minute spots from: 
   </p>
   <ul class="listing">
     {% for item in night.acts|sort(attribute='name') %}
@@ -33,7 +31,14 @@
       <li>This would display if the 'item' collection were empty</li>
     {% endfor %}
   </ul>
-  <p>And your host for the night: <span>{{ night.mc.name }}</span></p>
+  <p>
+    And your host for the night will be
+    {%- if night.mc.link %}
+    <a href="{{  night.mc.link }}">{{  night.mc.name }}</a>
+    {%- else -%}
+    {{  night.mc.name }}
+    {%- endif -%}
+  </p>
    
   <h2 id="where">Where to find us</h2>
   <p>

@@ -9,10 +9,10 @@
 </div>
 <div class="container">
   <ul class="listing">
-    {% for item in api.nights | sort(attribute='date') %}
+    {% for item in api.nights | sort(true, attribute='date') %}
       <li>
-        <h2><a href="/on/{{ item.url }}">{{ item.dateDisplay }}</a></h2>
-        <h3>{{ item.strapLine }}</h3>
+        <h2>{{ item.dateDisplay }}</h2>
+        <h3 class="subtitle">{{ item.strapLine }}</h3>
         <p>{{ item.description }}</p>
         <h3>Featuring</h3>
         <ul class="listing">
@@ -24,8 +24,17 @@
             {% endif %}
           {% endfor %}
         </ul>
-        <p>and our MC for the the night: {{ item.mc.name }}</p>
-        <p>Find more details and post photos on the event's <a href="">Facebook page</a></p>
+        <p>
+          And your host for the night will be
+          {%- if item.mc.link %}
+          <a href="{{  item.mc.link }}">{{  item.mc.name }}</a>
+          {%- else -%}
+          {{  item.mc.name }}
+          {%- endif -%}
+        </p>
+        {% if item.facebookEvent %}
+        <p>Find more details and post photos on the event's <a target="_BLANK" href="{{ item.facebookEvent }}">Facebook page</a></p>
+        {% endif %}
       </li>
       {% if not loop.last %}
       <hr class="stamp">
