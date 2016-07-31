@@ -78,17 +78,17 @@ h3.subtitle {
 
 a {
 
-    transition:all 0.3s ease;
     text-decoration: none;
 
     &:visited,
     &:link,
     &:active {
-        color: $link-color;
+        color: $link-color-dark;
     }
     &:hover,
     &:focus {
-        color: $link-color-bright;
+        color: $link-color;
+        border-bottom: solid 1px $link-color-bright;
     }
 }
 
@@ -130,15 +130,6 @@ header .navigation {
 }
 
 
-// .next-night {
-//     display: block;
-//     margin:1em auto;
-//     font-size: 2em;
-//     background-color: $link-color;
-//     color:#fff;
-//     padding: 1em;
-//     border-radius: 2px;
-// }
 
 .sticker-next {
     border: solid 4px $link-color-dark;
@@ -165,13 +156,32 @@ header .navigation {
     } 
 }
 
-.button {
-    display: inline-block;
-    margin:1em auto;
-    font-size: 2em;
-    border: solid 2px $link-color;
-    color:#fff;
-    padding: 1em;
-    border-radius: 2px;
-}
 
+a.map {
+    
+    font-family: 'league_gothicregular';
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 1.8em;
+    padding: 0.6em 1em;
+    margin: 0 auto 1em;
+    border-radius: 3px;
+    display: inline-block;
+    border: solid 4px $link-color-dark;
+    
+    &:visited,
+    &:link,
+    &:active {
+        color: $link-color-dark;
+    }
+    &:hover,
+    &:focus {
+        color: #fff;
+        background-color: $link-color-dark;
+    }
+
+    @include bp(wide) {
+        font-size: 2.2em;
+    } 
+    
+}

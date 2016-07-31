@@ -47,13 +47,19 @@ header {
             background-position-y: center;
             background-size:35%;
         } 
-
+    
     }
 
+    * {
+        transition:all 0.3s ease;
+    }
+
+
     .home:hover {
-        -webkit-transform: scale(1.2    );
-        -ms-transform: scale(1.2    );
-        transform: scale(1.2    );
+        
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
     }
 
     .acts,
@@ -109,6 +115,11 @@ header {
     overflow: none;
     text-indent: -9999px;
     margin: 2em auto 1.5em;
+
+    &:hover,
+    &:focus {
+        @include circle(60px, #000, $link-color, inline-block);;
+    }
 }
 
 img.mic {
