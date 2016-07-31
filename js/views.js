@@ -66,10 +66,6 @@ var site = {
           results.api[objName] = arguments[result][0];
         }
       }
-
-      console.log('PATH', path);
-      
-
       // render the data into a template
       site.render(results, view.template);
     });
@@ -78,8 +74,9 @@ var site = {
 
   // apply the template and insert it into the page
   render : function (data, template) {
-     var output = nunjucks.render(template + ".html", data);
+    var output = nunjucks.render(template + ".html", data);
     $('.content').html(output);
+    smoothScroll.animateScroll( '#top' );
   },
 
 

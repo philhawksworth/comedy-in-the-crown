@@ -168,6 +168,7 @@ a.map {
     border-radius: 3px;
     display: inline-block;
     border: solid 4px $link-color-dark;
+    background-color: #fff;
     
     &:visited,
     &:link,
@@ -185,3 +186,34 @@ a.map {
     } 
     
 }
+
+
+
+a.social {
+    
+    display: inline-block;
+    width: 50px;
+    height:50px;
+    text-indent: -9999px;
+    overflow: none;
+    margin-top: 1em;
+
+
+    &:hover,
+    &:focus {
+       fill: #880000;
+       border-style:none;
+    }
+
+    @include bp(wide) {
+    } 
+ 
+}
+
+a.twitter {
+    background-image: url('/images/twitter.svg');
+}
+a.facebook {
+    background-image: url('/images/facebook.svg');
+}
+
