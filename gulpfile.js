@@ -180,7 +180,7 @@ gulp.task('scripts', () =>
 
 // Combine and compress javascript
 gulp.task('images', () =>
-  gulp.src(['images/*'])
+  gulp.src(['images/**/*'])
     .pipe(gulp.dest('dist/images'))
 );
 
