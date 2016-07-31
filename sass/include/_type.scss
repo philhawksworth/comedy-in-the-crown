@@ -102,6 +102,10 @@ a {
         font-size: 0.8em;
         vertical-align: middle;
 
+        @include bp(wide) {
+            font-size: 1.2em;
+        } 
+
         &:visited,
         &:link,
         &:active {
@@ -126,15 +130,15 @@ header .navigation {
 }
 
 
-.next-night {
-    display: block;
-    margin:1em auto;
-    font-size: 2em;
-    background-color: $link-color;
-    color:#fff;
-    padding: 1em;
-    border-radius: 2px;
-}
+// .next-night {
+//     display: block;
+//     margin:1em auto;
+//     font-size: 2em;
+//     background-color: $link-color;
+//     color:#fff;
+//     padding: 1em;
+//     border-radius: 2px;
+// }
 
 .sticker-next {
     border: solid 4px $link-color-dark;

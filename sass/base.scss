@@ -28,21 +28,21 @@ header {
         @include circle(80px, transparent, #fff, inline-block);
         text-indent: -9999px;
         overflow: none;
-        background: url('/images/mic.png') no-repeat;
+        background: url('/images/mic.svg') no-repeat;
         background-position-x: center;
         background-position-y: center;
         background-size:30%;
         
         @include bp(mid) {
             @include circle(100px, transparent, #fff, inline-block);
-            background: url('/images/mic.png') no-repeat;
+            background: url('/images/mic.svg') no-repeat;
             background-position-x: center;
             background-position-y: center;
             background-size:35%;
         }
         @include bp(wide) {
             @include circle(140px, transparent, #fff, inline-block);
-            background: url('/images/mic.png') no-repeat;
+            background: url('/images/mic.svg') no-repeat;
             background-position-x: center;
             background-position-y: center;
             background-size:35%;
@@ -101,7 +101,7 @@ header {
 .stamp {
     border-style:none;
     @include circle(60px, #000, transparent, inline-block);
-    background-image: url('/images/mic.png');
+    background-image: url('/images/mic.svg');
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
