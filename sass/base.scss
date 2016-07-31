@@ -55,12 +55,12 @@ header {
     }
 
 
-    .home:hover {
+    // .home:hover {
         
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2);
-    }
+    //     -webkit-transform: scale(1.2);
+    //     -ms-transform: scale(1.2);
+    //     transform: scale(1.2);
+    // }
 
     .acts,
     .dates {
@@ -69,6 +69,12 @@ header {
         padding:0.5em 1em;
     }
 
+}
+
+.swell {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .content {

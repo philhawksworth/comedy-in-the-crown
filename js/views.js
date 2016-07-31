@@ -8,10 +8,6 @@ var site = {
       "url": ["/api/nights.json"],
       "template": "dates",
     },
-    "/on/*" : {
-      "url": ["/api/nights.json"],
-      "template": "night",
-    },
     "/featuring" : {
       "url": ["/api/acts.json"],
       "template": "performers",
@@ -33,6 +29,9 @@ var site = {
       site.setAddress(e.target.pathname);
       $(e.target).blur();  
       //todo: fire analytics
+
+      $('header .home').addClass('swell');
+
     });
     // perform client-side content render for browser history navigation
     window.onpopstate = function(e) {
@@ -77,6 +76,10 @@ var site = {
     var output = nunjucks.render(template + ".html", data);
     $('.content').html(output);
     smoothScroll.animateScroll( '#top' );
+    setTimeout(function(){
+      $('header .home').removeClass('swell');
+    }, 300);
+    
   },
 
 
