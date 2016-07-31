@@ -105,5 +105,6 @@ var site = {
 
 $( document ).ready(function() {
   site.addEventHandlers();
+  smoothScroll.init();
 });
 

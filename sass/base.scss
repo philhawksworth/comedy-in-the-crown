@@ -51,9 +51,9 @@ header {
     }
 
     .home:hover {
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2);
+        -webkit-transform: scale(1.2    );
+        -ms-transform: scale(1.2    );
+        transform: scale(1.2    );
     }
 
     .acts,
@@ -98,7 +98,7 @@ header {
     text-align: center;
 }
 
-hr.stamp {
+.stamp {
     border-style:none;
     @include circle(60px, #000, transparent, inline-block);
     background-image: url('/images/mic.png');
@@ -107,12 +107,18 @@ hr.stamp {
     background-position-y: center;
     background-size:30%;
     overflow: none;
+    text-indent: -9999;
     margin: 2em auto 1.5em;
 }
 
 img.mic {
     width: 80px;
     margin-bottom: -1em;
+    display: none;
+
+    @include bp(mid) {
+        display: inline-block;
+    } 
 
     @include bp(wide) {
         margin-bottom: -2em;
