@@ -28,8 +28,8 @@ var site = {
       site.loadPage(e.target.pathname);
       site.setAddress(e.target.pathname);
       $(e.target).blur();  
-      //todo: fire analytics
       $('header .home').addClass('swell');
+      ga('send', 'pageview', e.target.pathname);
     });
     // perform client-side content render for browser history navigation
     window.onpopstate = function(e) {
