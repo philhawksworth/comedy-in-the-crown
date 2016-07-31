@@ -29,9 +29,7 @@ var site = {
       site.setAddress(e.target.pathname);
       $(e.target).blur();  
       //todo: fire analytics
-
       $('header .home').addClass('swell');
-
     });
     // perform client-side content render for browser history navigation
     window.onpopstate = function(e) {
