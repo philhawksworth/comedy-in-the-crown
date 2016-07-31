@@ -11,7 +11,7 @@
 
 <div class="container">
   <h2 class="sticker-next">Our next comedy night</h2>
-  {% set night = api.nights | last %}
+  {% set night = api.nights | sort(true, attribute='date') | first %}
   <h2>{{ night.dateDisplay }}</h2>
   <h3 class="subtitle">{{ night.strapLine }}</h3>
   <p>
