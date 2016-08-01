@@ -12,6 +12,10 @@ var site = {
       "url": ["/api/acts.json"],
       "template": "performers",
     },
+    "/acts" : {
+      "url": ["/api/acts.json"],
+      "template": "performers",
+    },
     "/" :  {
       "url": ["/api/nights.json"],
       "template": "index",
