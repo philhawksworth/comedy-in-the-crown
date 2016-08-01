@@ -184,6 +184,12 @@ gulp.task('images', () =>
     .pipe(gulp.dest('dist/images'))
 );
 
+// Ensure any config files make to the dist folder
+gulp.task('configs', () =>
+  gulp.src(['_redirects',])
+    .pipe(gulp.dest('dist'))
+);
+
 
 
 // Compile CSS from Sass
@@ -221,7 +227,7 @@ gulp.task('watch', ['sass:watch', 'templates:watch']);
 gulp.task('build:local', function(callback) {
   runSequence(
     'clean',
-    ['generate', 'images', 'scripts', 'sass', 'precompile', 'api'],
+    ['generate', 'images', 'scripts', 'sass', 'precompile', 'api', 'configs'],
     callback
   );
 });
