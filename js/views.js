@@ -29,7 +29,6 @@ var site = {
       site.setAddress(e.target.pathname);
       $(e.target).blur();  
       $('header .home').addClass('swell');
-      // ga('send', 'pageview', e.target.pathname);
     });
     // perform client-side content render for browser history navigation
     window.onpopstate = function(e) {
@@ -44,6 +43,7 @@ var site = {
   // set the address in the browser history
   // render the page
   loadPage : function(path) {
+    ga('send', 'pageview', e.target.pathname);
     var view = site.views[path];
     var urls = view.url;
     $.when.apply($, urls.map(function(url) {
