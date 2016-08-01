@@ -43,7 +43,7 @@ var site = {
   // set the address in the browser history
   // render the page
   loadPage : function(path) {
-    ga('send', 'pageview', e.target.pathname);
+    ga('send', 'pageview', path);
     var view = site.views[path];
     var urls = view.url;
     $.when.apply($, urls.map(function(url) {

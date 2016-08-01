@@ -1,6 +1,4 @@
 {% set pageClass = "dates" %}
-
-
 <div class="hero">
   <h1>Our gig nights</h1>
   <p>
@@ -9,39 +7,37 @@
 </div>
 <div class="container">
   <ul class="listing">
-
     <h2 class="sticker-next">Our next comedy night</h2>
-    {% for item in api.nights | sort(true, attribute='date') %}
+    {% for item in api.nights | sort(true, attribute='date') -%}
       <li>
         <h2>{{ item.dateDisplay }}</h2>
         <h3 class="subtitle">{{ item.strapLine }}</h3>
         <p>{{ item.description }}</p>
         <h3>Featuring</h3>
         <ul class="listing">
-          {% for act in item.acts %}
-            {% if act.link %}
+          {% for act in item.acts -%}
+            {% if act.link -%}
             <li><a href="{{ act.link }}">{{ act.name }}</a></li>
-            {% else %}
+            {% else -%}
             <li>{{ act.name }}</li>
-            {% endif %}
+            {% endif -%}
           {% endfor %}
         </ul>
         <p>
-          And your host for the night will be
-          {%- if item.mc.link %}
+          And your host for the night will be 
+          {%- if item.mc.link -%}
           <a href="{{  item.mc.link }}">{{  item.mc.name }}</a>
-          {%- else -%}
-          {{  item.mc.name }}
-          {%- endif -%}
+          {% else -%}
+          {{ item.mc.name }}
+          {% endif -%}
         </p>
-        {% if item.facebookEvent %}
+        {% if item.facebookEvent -%}
         <p>Find more details and post photos on the event's <a target="_BLANK" href="{{ item.facebookEvent }}">Facebook page</a></p>
-        {% endif %}
+        {% endif -%}
       </li>
-      {% if not loop.last %}
+      {% if not loop.last -%}
       <a href="#top" data-scroll class="stamp mic">Back to top</a>
-      {% endif %}
-
-    {% endfor %}
+      {% endif -%}
+    {% endfor -%}
   </ul>
 </div>

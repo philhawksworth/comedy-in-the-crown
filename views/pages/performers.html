@@ -9,22 +9,20 @@
 <div class="container">
   <ul class="listing">
     {% set latestInitial = "" %}
-    {% for item in api.acts|sort(attribute='name') %}
-
-      {% if latestInitial  == item.name.substr(0,1) %}
-      {% else %}
-        {% set latestInitial = item.name.substr(0,1) %}
+    {% for item in api.acts|sort(attribute='name') -%}
+      {% if latestInitial  == item.name.substr(0,1) -%}
+      {% else -%}
+        {% set latestInitial = item.name.substr(0,1) -%}
         <a href="#top" data-scroll class="stamp letter">{{ latestInitial }}</a>
-      {% endif %}
-
-      {% if item.link %}
+      {% endif -%}
+      {% if item.link -%}
       <li><a href="{{ item.link }}">{{ item.name }}</a></li>
-      {% else %}
+      {% else -%}
       <li>{{ item.name }}</li>
-      {% endif %}
-    {% else %}
+      {% endif -%}
+    {% else -%}
       <li>This would display if the 'item' collection were empty</li>
-    {% endfor %}
+    {% endfor -%}
   </ul>
   <p>If you want to join them as performers at Comedy in the Crown, email us at <a href="mailto:bookings@comedyinthecrown.com">bookings@comedyinthecrown.com</a></p>
 </div>
