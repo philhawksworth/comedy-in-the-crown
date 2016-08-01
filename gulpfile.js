@@ -3,7 +3,6 @@ const fs = require('fs');
 const gulp = require('gulp');
 const data = require('gulp-data');
 const nunjucks = require('gulp-nunjucks');
-const nun = require('nunjucks');
 const fm = require('front-matter');
 const clean = require('gulp-clean');
 const concat = require('gulp-concat');
@@ -18,6 +17,7 @@ const mkdirp = require('mkdirp');
 
 
 // set up the contentful query client
+// readonly access from these creds
 var client = contentful.createClient({
   space: 'ot0mnooc6nee', 
   accessToken: 'c685bb6a2978131d6e287e6e1a6c1b1b71ce6cf3c7a3be2caa43cc6b4ec580eb'
@@ -57,53 +57,11 @@ gulp.task('generate', () =>
 );
 
 
-
-
-// var getDirName = path.dirname;
-
-// function writeFile(path, contents, cb) {
-//   mkdirp(getDirName(path), function (err) {
-//     if (err) return cb(err);
-//     fs.writeFile(path, contents, cb);
-//   });
-// }
-
-// gulp.task('generate:events', () =>
-//   gulp.src('api/nights.json')
-//     .pipe(data(function(file) {
-//       var nights = JSON.parse(file.contents);
-//       for (var night = 0; night < nights.length; night++) {
-//         var element = nights[night];
-//         return nunjucks.compile('views/night.html', element);
-//         // writeFile('dist/on/' + element.url + '/index.html', html); 
-//       }
-
-//     }))
-//     .pipe(prettyUrl())
-//     .pipe(gulp.dest('dist/on/'))
-// );
-
-
-// gulp.task('nun', function(){
-//   var data = require('./api/nights.json');
-//   nunjucks.configure('views', { autoescape: true });
-//   for (var item = 0; item < data.length; item++) {
-//     var element = data[item];
-//     var out = nun.render('night.html', data[item]);
-//     console.log(out);
-   
-//   }
-
-// });
-
-
-
 // copy the api files to the output directory
 gulp.task('api', () =>
   gulp.src('api/**/*.json')
     .pipe(gulp.dest('dist/api'))
 );
-
 
 
 // Get the Acts data from the cloud CMS and stash it locally
@@ -119,7 +77,6 @@ gulp.task('get:acts', () =>
       }
     )
 );
-
 
 
 // Get the Nights data from the cloud CMS and stash it locally
@@ -198,7 +155,6 @@ gulp.task('sass', () =>
     .pipe(sass({outputStyle: 'compressed', includePaths: ['./sass/include']}).on('error', sass.logError))
     .pipe(gulp.dest('dist/style'))
 );
-
 
 gulp.task('sass:watch', () =>
   gulp.watch('sass/**/*.scss', ['sass'])

@@ -1,6 +1,8 @@
 # Comedy in the Crown
 
-A website to promote a free open mic comedy night. And also a proof of concept for a conten management workflow.
+A website to promote a free open mic comedy night. And also a proof of concept for a content management workflow.
+
+View the site at https://comedyinthecrown.com
 
 ## About this site
 
@@ -23,7 +25,7 @@ The site is hosted on [Netlify](https://netlify.com) as a static build.
 
 After cloning this repository, all dependencies can be installed be running `npm install`. Once this is done, Gulp provides a numebr of buold options:
 
-`gulp` - defaults to `gulp build:local`
-`gulp build:prod` - Retreives the latest content data from Contentful, stashes it in a local API and thenn executes `gulp build:local`
-`gulp build:local` - Executes the compilation of the entire build from a local stash of the content data api.
-`gulp watch` - Regenerates templates, css and scripts when changes to those resources are detected.
+- `gulp` - defaults to `gulp build:local`
+- `gulp build:prod` - Retreives the latest content data from Contentful, stashes it in a local API and thenn executes `gulp build:local`
+- `gulp build:local` - Executes the compilation of the entire build from a local stash of the content data api.
+- `gulp watch` - Regenerates templates, css and scripts when changes to those resources are detected.

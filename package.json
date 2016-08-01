@@ -1,12 +1,9 @@
 {
-  "name": "gulp-short",
+  "name": "Comedyinthecrown.com",
   "version": "1.0.0",
-  "description": "",
+  "description": "A static site for a free comedy night",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "Phil Hawksworth",
   "license": "ISC",
   "devDependencies": {
     "contentful": "^3.5.0",
@@ -28,8 +25,6 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
-    "gulp-webserver": "^0.9.1",
-    "jbone": "^1.2.0",
-    "reqwest": "^2.0.5"
+    "gulp-webserver": "^0.9.1"
   }
 }
