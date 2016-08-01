@@ -8,10 +8,6 @@ var site = {
       "url": ["/api/nights.json"],
       "template": "dates",
     },
-    "/featuring" : {
-      "url": ["/api/acts.json"],
-      "template": "performers",
-    },
     "/acts" : {
       "url": ["/api/acts.json"],
       "template": "performers",
@@ -33,7 +29,7 @@ var site = {
       site.setAddress(e.target.pathname);
       $(e.target).blur();  
       $('header .home').addClass('swell');
-      ga('send', 'pageview', e.target.pathname);
+      // ga('send', 'pageview', e.target.pathname);
     });
     // perform client-side content render for browser history navigation
     window.onpopstate = function(e) {
