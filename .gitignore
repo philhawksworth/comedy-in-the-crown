@@ -2,3 +2,4 @@ node_modules/
 dist/
 api/
 .vscode
+jsconfig.json
