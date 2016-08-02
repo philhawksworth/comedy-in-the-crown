@@ -15,7 +15,7 @@ const contentful = require('contentful');
 const moment = require('moment');
 const mkdirp = require('mkdirp');
 const critical = require('critical');
-
+const inject = require('gulp-inject');
 
 // set up the contentful query client
 // readonly access from these creds
@@ -54,6 +54,13 @@ gulp.task('generate', () =>
     }))
     .pipe(nunjucks.compile())
     .pipe(prettyUrl())
+    .pipe(inject(gulp.src(['./dist/style/*.css']), {
+      starttag: '<!-- inject:css -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        return file.contents.toString('utf8')
+      }
+    }))
     .pipe(gulp.dest('dist'))
 );
 
@@ -199,7 +206,8 @@ gulp.task('watch', ['sass:watch', 'templates:watch']);
 gulp.task('build:local', function(callback) {
   runSequence(
     'clean',
-    ['generate', 'images', 'scripts', 'sass', 'precompile', 'api', 'configs'],
+    'sass',
+    ['generate', 'images', 'scripts', 'precompile', 'api', 'configs'],
     callback
   );
 });
