@@ -14,6 +14,7 @@ const runSequence = require('run-sequence');
 const contentful = require('contentful');
 const moment = require('moment');
 const mkdirp = require('mkdirp');
+const critical = require('critical');
 
 
 // set up the contentful query client
@@ -162,6 +163,21 @@ gulp.task('sass:watch', () =>
 gulp.task('templates:watch', () =>
   gulp.watch('views/**/*.html', ['generate','precompile'])
 );
+
+
+
+// Generate & Inline Critical-path CSS
+gulp.task('critical', ['build:local'], function (cb) {
+    critical.generate({
+        inline: true,
+        base: 'dist/',
+        src: 'index.html',
+        dest: 'dist/index-critical.html',
+        width: 320,
+        height: 480,
+        minify: true
+    });
+}); 
 
 
 

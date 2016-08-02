@@ -25,10 +25,10 @@
         </ul>
         <p>
           And your host for the night will be 
-          {%- if item.mc.link -%}
-          <a href="{{  item.mc.link }}">{{  item.mc.name }}</a>
-          {% else -%}
-          {{ item.mc.name }}
+          {% if item.mc.link %}
+           <a href="{{  item.mc.link }}">{{  item.mc.name }}</a>
+          {% else %}
+           {{ item.mc.name }}
           {% endif -%}
         </p>
         {% if item.facebookEvent -%}
