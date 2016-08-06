@@ -1,23 +1,7 @@
 
 var site = {
 
-  // configurations.
-  // Would be nice to generate this from the template defintions to keep things dry.
-  "views" : {
-    "/dates" : {
-      "url": ["/api/nights.json"],
-      "template": "dates",
-    },
-    "/acts" : {
-      "url": ["/api/acts.json"],
-      "template": "performers",
-    },
-    "/" :  {
-      "url": ["/api/nights.json"],
-      "template": "index",
-    }
-  },
-
+  //views object now generated from gulp task and added later (to keep things DRY)
 
   // create event handlers
   addEventHandlers : function () {
@@ -29,6 +13,8 @@ var site = {
       site.setAddress(e.target.pathname);
       $(e.target).blur();  
       $('header .home').addClass('swell');
+      $('.hero').removeClass('lights-on');
+
     });
     // perform client-side content render for browser history navigation
     window.onpopstate = function(e) {
@@ -43,11 +29,14 @@ var site = {
   // set the address in the browser history
   // render the page
   loadPage : function(path) {
+    
+    //fire analytics
     ga('send', 'pageview', path);
+
     var view = site.views[path];
     var urls = view.url;
     $.when.apply($, urls.map(function(url) {
-      return $.ajax(url);
+      return $.ajax("/" + url);
     }))
     .done(function() {
       // build a single data object keyed to pass the data to the templates
@@ -76,6 +65,7 @@ var site = {
     smoothScroll.animateScroll(0);
     setTimeout(function(){
       $('header .home').removeClass('swell');
+      $('.hero').addClass('lights-on');
     }, 300);
     
   },
@@ -96,13 +86,21 @@ var site = {
     return name;
   }
 
-
 };
 
-// Bind event losteners when the DOM is ready
 
 $( document ).ready(function() {
+  
+  // Bind event listeners when the DOM is ready
   site.addEventHandlers();
+  
+  // Add scroll effects
   smoothScroll.init();
+ 
+  // fade the lights up
+  setTimeout(function(){
+    $('.hero').addClass('lights-on');
+  }, 800);
+
 });
 

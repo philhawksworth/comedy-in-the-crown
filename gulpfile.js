@@ -14,8 +14,54 @@ const runSequence = require('run-sequence');
 const contentful = require('contentful');
 const moment = require('moment');
 const mkdirp = require('mkdirp');
-const critical = require('critical');
 const inject = require('gulp-inject');
+
+// const nunjucks = require('nunjucks');
+
+	
+	// const env = new nunjucks.Environment();
+//   var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('views'));
+	
+//   env.addFilter('shorten', function(str, count) {
+//     console.log(str);
+//     return str.slice(0, count || 5);
+//   });
+
+
+// var dateFilter = require('nunjucks-date-filter');
+// dateFilter.setDefaultFormat('YYYY');
+  
+// env.addFilter('date', dateFilter);
+
+
+// gulp.task('render', function () {
+
+  
+
+//     gulp.src('views/*.html')
+//     .pipe(data(function(file) {
+//       var content = fm(String(file.contents));
+//       var apiData = {};
+//       for (var i = 0; i < content.attributes.api.length; i++) {
+//         var source = content.attributes.api[i].split(".json")[0].split("/")[1]; // better with a regexp.
+//         apiData[source] = require("./" + content.attributes.api[i]);
+//       }
+//       content.attributes.api = apiData ;
+//       content.attributes.baseTemplate = "./layouts/base.html";
+//       // return content.attributes;
+//       var res = env.render('dates.html', content.attributes);
+//       console.log(res);
+
+
+
+//     }))
+  
+// });
+
+
+
+
+
 
 // set up the contentful query client
 // readonly access from these creds
@@ -36,6 +82,9 @@ gulp.task('clean-scripts', function () {
 });
 
 
+
+var confs = {"views" : {}};
+
 // Compile the views with the data found in the api sepcified in
 // the template's front-matter.
 // Additional data can be passed in the front-matter
@@ -44,12 +93,26 @@ gulp.task('generate', () =>
     .pipe(data(function(file) {
       var content = fm(String(file.contents));
       var apiData = {};
+      var apiUrls = []; // for our configs file in view.js
       for (var i = 0; i < content.attributes.api.length; i++) {
         var source = content.attributes.api[i].split(".json")[0].split("/")[1]; // better with a regexp.
+        apiUrls.push(content.attributes.api[i]);
         apiData[source] = require("./" + content.attributes.api[i]);
       }
       content.attributes.api = apiData ;
       content.attributes.baseTemplate = "./layouts/base.html";
+
+      // build a configs object for use as a reference in the client
+      var name = "/" + file.path.replace(file.base, "").replace(".html","");
+      if(name == "/index") {
+        name = "/";
+      }
+      confs.views[name] = {
+        "url" : apiUrls,
+        "template" : content.attributes.body
+      }
+      fs.writeFileSync('js/configs.js', "site.views = " + JSON.stringify(confs.views));
+
       return content.attributes;
     }))
     .pipe(nunjucks.compile())
@@ -137,7 +200,7 @@ gulp.task('precompile', () =>
 
 // Combine and compress javascript
 gulp.task('scripts', () =>
-  gulp.src(['js/libs/*.js', "js/*.js"])
+  gulp.src(['js/libs/*.js', "js/views.js", "js/configs.js"])
     .pipe(concat('concat.js'))
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'))
@@ -207,7 +270,8 @@ gulp.task('build:local', function(callback) {
   runSequence(
     'clean',
     'sass',
-    ['generate', 'images', 'scripts', 'precompile', 'api', 'configs'],
+    'generate',
+    ['images', 'scripts', 'precompile', 'api', 'configs'],
     callback
   );
 });

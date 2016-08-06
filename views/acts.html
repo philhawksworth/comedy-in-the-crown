@@ -1,9 +1,11 @@
 ---
 api: [api/acts.json]
+body: performers
 ---
 
+{% set pageBody = "./pages/" + body + ".html"  %}
 {% extends baseTemplate %}
 
 {% block content %}
-{% include "./pages/performers.html" %}
+{% include pageBody %}
 {% endblock %}

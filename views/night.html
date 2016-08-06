@@ -1,10 +1,11 @@
 ---
 api: [api/nights.json]
+body: night
 ---
 
-
+{% set pageBody = "./pages/" + body + ".html"  %}
 {% extends baseTemplate %}
 
 {% block content %}
-{% include "./pages/night.html" %}
+{% include pageBody %}
 {% endblock %}

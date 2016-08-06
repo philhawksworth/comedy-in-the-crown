@@ -1,11 +1,9 @@
 ---
 api: [api/nights.json]
-body: dates
 ---
 
-{% set pageBody = "./pages/" + body + ".html"  %}
 {% extends baseTemplate %}
 
 {% block content %}
-{% include pageBody %}
+{% include "./pages/dates.html" %}
 {% endblock %}
