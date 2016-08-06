@@ -13,8 +13,6 @@ var site = {
       site.setAddress(e.target.pathname);
       $(e.target).blur();  
       $('header .home').addClass('swell');
-      $('.hero').removeClass('lights-on');
-
     });
     // perform client-side content render for browser history navigation
     window.onpopstate = function(e) {
@@ -65,7 +63,6 @@ var site = {
     smoothScroll.animateScroll(0);
     setTimeout(function(){
       $('header .home').removeClass('swell');
-      $('.hero').addClass('lights-on');
     }, 300);
     
   },
@@ -90,6 +87,7 @@ var site = {
 
 
 $( document ).ready(function() {
+
   
   // Bind event listeners when the DOM is ready
   site.addEventHandlers();
@@ -97,10 +95,7 @@ $( document ).ready(function() {
   // Add scroll effects
   smoothScroll.init();
  
-  // fade the lights up
-  setTimeout(function(){
-    $('.hero').addClass('lights-on');
-  }, 800);
+
 
 });
 
