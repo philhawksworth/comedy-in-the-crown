@@ -12,9 +12,11 @@ const webserver = require('gulp-webserver');
 const prettyUrl = require("gulp-pretty-url");
 const runSequence = require('run-sequence');
 const contentful = require('contentful');
-const dateFilter = require('nunjucks-date-filter');
+// const dateFilter = require('nunjucks-date-filter');
 const mkdirp = require('mkdirp');
 const inject = require('gulp-inject');
+const dates = require("./js/dates.js");
+
 
 
 // An configuration object to be popualted and passed to the client
@@ -24,8 +26,8 @@ var confs = { "views" : {} };
 // Add a custom nunjucks environment for custom filters
 const nunj = require('nunjucks');
 var env = new nunj.Environment(new nunj.FileSystemLoader('views'));
-env.addFilter('date', dateFilter);
-
+env.addFilter('date', dates.display);
+env.addFilter('upcoming', dates.upcoming);
 
 
 // set up the contentful query client

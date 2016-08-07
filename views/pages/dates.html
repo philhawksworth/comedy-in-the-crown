@@ -5,10 +5,59 @@
     Comedy nights at The Crown are held on the first and third Tuesdays of every month.
   </p>
 </div>
+
+{% set futureNights = [] %}
+{% set historicNights = [] %}
+{% for item in api.nights %}
+{% if item.date | upcoming %}
+  {% set futureNights = (futureNights.push(item),futureNights) %}
+{% else %}
+  {% set historicNights = (historicNights.push(item),historicNights) %}
+{% endif %}
+{% endfor %}
+
 <div class="container">
+  <h4>Coming Up</h4>
   <ul class="listing">
-    <h2 class="sticker-next">Our next comedy night</h2>
-    {% for item in api.nights | sort(true, attribute='date') -%}
+    {% for item in futureNights | sort(false, attribute='date') -%}
+      <li>
+        {% if loop.first %}
+        <h2 class="sticker-next">Our next comedy night</h2>
+        {% endif %}
+        <h2>{{ item.date | date("MMMM Do YYYY") }}</h2>
+        <h3 class="subtitle">{{ item.strapLine }}</h3>
+        <p>{{ item.description }}</p>
+        <h3>Featuring</h3>
+        <ul class="listing">
+          {% for act in item.acts -%}
+            {% if act.link -%}
+            <li><a href="{{ act.link }}">{{ act.name }}</a></li>
+            {% else -%}
+            <li>{{ act.name }}</li>
+            {% endif -%}
+          {% endfor %}
+        </ul>
+        <p>
+          And your host for the night will be 
+          {% if item.mc.link %}
+           <a href="{{  item.mc.link }}">{{  item.mc.name }}</a>
+          {% else %}
+           {{ item.mc.name }}
+          {% endif %}
+        </p>
+        {% if item.facebookEvent -%}
+        <p>Find more details and post photos on the event's <a target="_BLANK" href="{{ item.facebookEvent }}">Facebook page</a></p>
+        {% endif -%}
+      </li>
+      {% if not loop.last -%}
+      <a href="#top" data-scroll class="stamp mic">Back to top</a>
+      {% endif -%}
+    {% endfor -%}
+  </ul>
+
+  <h4>Nights gone by</h4>
+  <ul class="listing">
+    {% for item in historicNights | sort(true, attribute='date') -%}
       <li>
         <h2>{{ item.date | date("MMMM Do YYYY") }}</h2>
         <h3 class="subtitle">{{ item.strapLine }}</h3>
@@ -40,4 +89,9 @@
       {% endif -%}
     {% endfor -%}
   </ul>
+
+
+
+
+
 </div>
