@@ -1,3 +1,8 @@
+var env = new nunjucks.Environment();
+env.addFilter('date', function(str, pattern){
+  return moment(str).format(pattern);
+});
+
 
 var site = {
 
@@ -58,7 +63,7 @@ var site = {
 
   // apply the template and insert it into the page
   render : function (data, template) {
-    var output = nunjucks.render(template + ".html", data);
+    var output = env.render(template + ".html", data);
     $('.content').html(output);
     smoothScroll.animateScroll(0);
     setTimeout(function(){

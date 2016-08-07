@@ -10,7 +10,7 @@
     <h2 class="sticker-next">Our next comedy night</h2>
     {% for item in api.nights | sort(true, attribute='date') -%}
       <li>
-        <h2>{{ item.dateDisplay }}</h2>
+        <h2>{{ item.date | date("MMMM Do YYYY") }}</h2>
         <h3 class="subtitle">{{ item.strapLine }}</h3>
         <p>{{ item.description }}</p>
         <h3>Featuring</h3>

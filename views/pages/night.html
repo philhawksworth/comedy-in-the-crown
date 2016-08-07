@@ -11,7 +11,7 @@
   <ul class="listing">
     {% for item in api.nights | selectattr("url", path) %}
       <li>
-        <h2>{{ item.dateDisplay }}</h2>
+        <h2>{{ item.date | date("MMMM Do") }}</h2>
         <h3>{{ item.strapLine }}</h3>
         <p>{{ item.description }}</p>
         <h3>Featuring</h3>

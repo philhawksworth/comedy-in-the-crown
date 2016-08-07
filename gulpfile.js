@@ -12,54 +12,19 @@ const webserver = require('gulp-webserver');
 const prettyUrl = require("gulp-pretty-url");
 const runSequence = require('run-sequence');
 const contentful = require('contentful');
-const moment = require('moment');
+const dateFilter = require('nunjucks-date-filter');
 const mkdirp = require('mkdirp');
 const inject = require('gulp-inject');
 
-// const nunjucks = require('nunjucks');
 
-	
-	// const env = new nunjucks.Environment();
-//   var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('views'));
-	
-//   env.addFilter('shorten', function(str, count) {
-//     console.log(str);
-//     return str.slice(0, count || 5);
-//   });
+// An configuration object to be popualted and passed to the client
+// for render view configurations.
+var confs = { "views" : {} };
 
-
-// var dateFilter = require('nunjucks-date-filter');
-// dateFilter.setDefaultFormat('YYYY');
-  
-// env.addFilter('date', dateFilter);
-
-
-// gulp.task('render', function () {
-
-  
-
-//     gulp.src('views/*.html')
-//     .pipe(data(function(file) {
-//       var content = fm(String(file.contents));
-//       var apiData = {};
-//       for (var i = 0; i < content.attributes.api.length; i++) {
-//         var source = content.attributes.api[i].split(".json")[0].split("/")[1]; // better with a regexp.
-//         apiData[source] = require("./" + content.attributes.api[i]);
-//       }
-//       content.attributes.api = apiData ;
-//       content.attributes.baseTemplate = "./layouts/base.html";
-//       // return content.attributes;
-//       var res = env.render('dates.html', content.attributes);
-//       console.log(res);
-
-
-
-//     }))
-  
-// });
-
-
-
+// Add a custom nunjucks environment for custom filters
+const nunj = require('nunjucks');
+var env = new nunj.Environment(new nunj.FileSystemLoader('views'));
+env.addFilter('date', dateFilter);
 
 
 
@@ -83,8 +48,6 @@ gulp.task('clean-scripts', function () {
 
 
 
-var confs = {"views" : {}};
-
 // Compile the views with the data found in the api sepcified in
 // the template's front-matter.
 // Additional data can be passed in the front-matter
@@ -101,7 +64,6 @@ gulp.task('generate', () =>
       }
       content.attributes.api = apiData ;
       content.attributes.baseTemplate = "./layouts/base.html";
-
       // build a configs object for use as a reference in the client
       var name = "/" + file.path.replace(file.base, "").replace(".html","");
       if(name == "/index") {
@@ -112,10 +74,9 @@ gulp.task('generate', () =>
         "template" : content.attributes.body
       }
       fs.writeFileSync('js/configs.js', "site.views = " + JSON.stringify(confs.views));
-
       return content.attributes;
     }))
-    .pipe(nunjucks.compile())
+    .pipe(nunjucks.compile(null, {"env" : env}))
     .pipe(prettyUrl())
     .pipe(inject(gulp.src(['./dist/style/*.css']), {
       starttag: '<!-- inject:css -->',
@@ -163,10 +124,6 @@ gulp.task('get:nights', () =>
             thisNightsActs.push(resp.items[item].fields.performers[night].fields);
           }
           delete thisNight.performers;
-
-          // format the date (until numjucks format support)
-          thisNight.dateDisplay = moment(thisNight.date).format("MMMM Do YYYY");
-          thisNight.url = moment(thisNight.date).format("YYY-MM-DD");
           thisNight.acts = thisNightsActs;
 
           // format the mc data
@@ -182,6 +139,7 @@ gulp.task('get:nights', () =>
       }
     )
 );
+
 
 // Get data from the cloud CMS and stash it locally
 gulp.task('get', ['get:acts', 'get:nights']);
@@ -206,18 +164,19 @@ gulp.task('scripts', () =>
     .pipe(gulp.dest('dist/js'))
 );
 
+
 // Combine and compress javascript
 gulp.task('images', () =>
   gulp.src(['images/**/*'])
     .pipe(gulp.dest('dist/images'))
 );
 
+
 // Ensure any config files make to the dist folder
 gulp.task('configs', () =>
   gulp.src(['_redirects',])
     .pipe(gulp.dest('dist'))
 );
-
 
 
 // Compile CSS from Sass
@@ -227,28 +186,14 @@ gulp.task('sass', () =>
     .pipe(gulp.dest('dist/style'))
 );
 
+
+// Watchers
 gulp.task('sass:watch', () =>
   gulp.watch('sass/**/*.scss', ['sass'])
 );
 gulp.task('templates:watch', () =>
   gulp.watch('views/**/*.html', ['generate','precompile'])
 );
-
-
-
-// Generate & Inline Critical-path CSS
-gulp.task('critical', ['build:local'], function (cb) {
-    critical.generate({
-        inline: true,
-        base: 'dist/',
-        src: 'index.html',
-        dest: 'dist/index-critical.html',
-        width: 320,
-        height: 480,
-        minify: true
-    });
-}); 
-
 
 
 // serve the static dist folder
@@ -266,6 +211,7 @@ gulp.task('serve', function() {
 gulp.task('default', ['build:local']);
 gulp.task('watch', ['sass:watch', 'templates:watch']);
 
+
 gulp.task('build:local', function(callback) {
   runSequence(
     'clean',
@@ -276,10 +222,12 @@ gulp.task('build:local', function(callback) {
   );
 });
 
+
 gulp.task('build:prod', function(callback) {
   runSequence(
     'get',
     'build:local',
     callback
   );
+
 });
