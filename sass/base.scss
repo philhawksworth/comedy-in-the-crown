@@ -98,36 +98,14 @@ header {
 .hero {
     transition:all 0.6s ease;
     color: #fff;
-    background: #334444 url('/images/curtain-mid.jpg') bottom center;
+    background: #992222 url('/images/curtain-mid.jpg') bottom center;
     padding: 8em 2em 2em 2em;
     text-align: center;
 
     @include bp(mid) {
-        background: #334444 url('/images/curtain.jpg') bottom center;
+        background: #992222 url('/images/curtain.jpg') bottom center;
     } 
 }
-
-
-@supports ( (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)) ) {
-  .lights-off {
-    -webkit-filter: hue-rotate(177deg) brightness(80%) saturate(50%);
-    filter: hue-rotate(177deg) brightness(80%) saturate(50%);
-  }
-}
-@supports ( not (backdrop-filter: blur(1px)) ) and (background: -moz-element(#back)) {
-  .lights-off h1::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: -moz-element(#back) fixed;
-
-    -webkit-filter: hue-rotate(177deg) brightness(80%) saturate(50%);
-    filter: hue-rotate(177deg) brightness(80%) saturate(50%);
-    
-  }
-}
-
 
 
 a.mic {
