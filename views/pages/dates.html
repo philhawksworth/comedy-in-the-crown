@@ -35,10 +35,12 @@
             {% else -%}
             <li>{{ act.name }}</li>
             {% endif -%}
+          {%- else -%}
+          <li>...who knows? Perhaps you might be performing. To get a spot at this, or another Comedy in the Crown night, email us at <a href="mailto:bookings@comedyinthecrown.com">bookings@comedyinthecrown.com</a></li>  
           {% endfor %}
         </ul>
         <p>
-          And your host for the night will be 
+          Your host for the night will be 
           {% if item.mc.link %}
            <a href="{{  item.mc.link }}">{{  item.mc.name }}</a>
           {% else %}
@@ -73,7 +75,7 @@
           {% endfor %}
         </ul>
         <p>
-          And your host for the night will be 
+          And your host for the night was
           {% if item.mc.link %}
            <a href="{{  item.mc.link }}">{{  item.mc.name }}</a>
           {% else %}

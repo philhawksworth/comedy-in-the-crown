@@ -122,8 +122,10 @@ gulp.task('get:nights', () =>
         for (var item = 0; item < resp.items.length; item++) {
           var thisNight = resp.items[item].fields;
           var thisNightsActs = [];
-          for (var night = 0; night < resp.items[item].fields.performers.length; night++) {
-            thisNightsActs.push(resp.items[item].fields.performers[night].fields);
+          if (resp.items[item].fields.performers) {
+            for (var night = 0; night < resp.items[item].fields.performers.length; night++) {
+              thisNightsActs.push(resp.items[item].fields.performers[night].fields);
+            }
           }
           delete thisNight.performers;
           thisNight.acts = thisNightsActs;
