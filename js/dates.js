@@ -39,6 +39,15 @@ var dateFilter = module.exports =  {
       var test = new Date(str);
       var now = new Date();
       return (test - now > 0);
+    },
+
+    urlify : function(str) {
+      function figures(str, length) {
+        var paddedStr = '00000' + str;
+        return paddedStr.slice(-length);
+      }
+      var d = new Date(str);
+      return d.getUTCFullYear() + "-" +  figures((d.getMonth()+1),2) + "-" + figures(d.getDate(),2);
     }
 
 };

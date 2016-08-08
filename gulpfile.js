@@ -12,22 +12,29 @@ const webserver = require('gulp-webserver');
 const prettyUrl = require("gulp-pretty-url");
 const runSequence = require('run-sequence');
 const contentful = require('contentful');
-// const dateFilter = require('nunjucks-date-filter');
 const mkdirp = require('mkdirp');
 const inject = require('gulp-inject');
 const dates = require("./js/dates.js");
 
 
-
 // An configuration object to be popualted and passed to the client
 // for render view configurations.
-var confs = { "views" : {} };
+// The /on path is hardcoded here until it can be autognerated
+var confs = { 
+  "views" : {
+    "/on/" : {"url": ["api/nights.json"],
+      "template": "night"
+    } 
+  }
+};
 
 // Add a custom nunjucks environment for custom filters
 const nunj = require('nunjucks');
+nunj.configure('views');
 var env = new nunj.Environment(new nunj.FileSystemLoader('views'));
 env.addFilter('date', dates.display);
 env.addFilter('upcoming', dates.upcoming);
+env.addFilter('urlify', dates.urlify);
 
 
 // set up the contentful query client
@@ -91,6 +98,39 @@ gulp.task('generate', () =>
 );
 
 
+
+// copy the api files to the output directory
+gulp.task('generate:nights', function() {
+  var apiData = require("./api/nights.json");
+  var data = {
+    "baseTemplate" : "./layouts/base.html",
+    "body" : "night"
+  };
+
+  // create each event page
+  for (var item = 0; item < apiData.length; item++) {
+    data.api = {"nights" : apiData};
+    data.path = dates.urlify(apiData[item].date);
+    var url = './dist/on/' + dates.urlify(apiData[item].date);
+    var out = env.render("night.html", data);
+    mkdirp.sync(url);
+    fs.writeFileSync(url + "/index.html", out)
+  }
+
+  // perform the css injection to each of the new pages.
+  gulp.src('./dist/on/*/index.html')
+    .pipe(inject(gulp.src(['./dist/style/*.css']), {
+      starttag: '<!-- inject:css -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        return file.contents.toString('utf8')
+      }
+    }))
+    .pipe(gulp.dest('dist/on/'))
+});
+
+
+
 // copy the api files to the output directory
 gulp.task('api', () =>
   gulp.src('api/**/*.json')
@@ -111,6 +151,9 @@ gulp.task('get:acts', () =>
       }
     )
 );
+
+
+
 
 
 // Get the Nights data from the cloud CMS and stash it locally
@@ -222,6 +265,7 @@ gulp.task('build:local', function(callback) {
     'sass',
     'generate',
     ['images', 'scripts', 'precompile', 'api', 'configs'],
+    'generate:nights',
     callback
   );
 });

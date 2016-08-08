@@ -1,5 +1,5 @@
 {
-  "name": "Comedyinthecrown.com",
+  "name": "comedyinthecrown",
   "version": "1.0.0",
   "description": "A static site for a free comedy night",
   "main": "index.js",
@@ -21,10 +21,7 @@
     "gulp-uglify": "^1.5.4",
     "jshint": "^2.9.2",
     "mkdirp": "^0.5.1",
-    "moment": "^2.14.1",
     "nunjucks": "^2.4.2",
-    "nunjucks-date-filter": "^0.1.1",
-    "nunjucks-filter": "^2.0.1",
     "run-sequence": "^1.2.2"
   },
   "dependencies": {

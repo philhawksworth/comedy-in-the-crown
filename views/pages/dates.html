@@ -61,7 +61,7 @@
   <ul class="listing">
     {% for item in historicNights | sort(true, attribute='date') -%}
       <li>
-        <h2>{{ item.date | date("MMMM Do YYYY") }}</h2>
+        <h2><a href="/on/{{ item.date | urlify() }}">{{ item.date | date }}</a></h2>
         <h3 class="subtitle">{{ item.strapLine }}</h3>
         <p>{{ item.description }}</p>
         <h3>Featuring</h3>

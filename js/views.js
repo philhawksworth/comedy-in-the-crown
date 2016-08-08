@@ -21,16 +21,25 @@ env.addFilter('upcoming', function(str){
   return (test - now > 0);
 });
 
+env.addFilter('urlify', function(str){  
+  function figures(str, length) {
+    var paddedStr = '00000' + str;
+    return paddedStr.slice(-length);
+  }
+  var d = new Date(str);
+  return d.getUTCFullYear() + "-" +  figures((d.getMonth()+1),2) + "-" + figures(d.getDate(),2);
+});
+
 
 var site = {
 
   //views object now generated from gulp task and added later (to keep things DRY)
 
+
   // create event handlers
   addEventHandlers : function () {
     // hijack links which are root relative
-    var dynamicPageLinks = document.querySelectorAll("[href^='/']");
-    $(dynamicPageLinks).on("click", function(e){
+    $(document.body).on('click', "[href^='/']" ,function(e){
       e.preventDefault();
       site.loadPage(e.target.pathname);
       site.setAddress(e.target.pathname);
@@ -54,14 +63,23 @@ var site = {
     //fire analytics
     ga('send', 'pageview', path);
 
-    var view = site.views[path];
+    // match all of the different gig event urls
+    if (/\/on\/(.*)/.test(path)) {
+      var view = site.views["/on/"];
+      path = path.replace("/on/","");
+    } else {
+      var view = site.views[path];
+    }
     var urls = view.url;
     $.when.apply($, urls.map(function(url) {
       return $.ajax("/" + url);
     }))
     .done(function() {
       // build a single data object keyed to pass the data to the templates
-      var results = {"api" : {}};
+      var results = {
+        "api" : {},
+        "path" : path
+      };
       var response;
       if(urls.length == 1){
         response = arguments[0];
@@ -87,7 +105,6 @@ var site = {
     setTimeout(function(){
       $('header .home').removeClass('swell');
     }, 300);
-    
   },
 
 
@@ -109,16 +126,11 @@ var site = {
 };
 
 
-$( document ).ready(function() {
 
-  
+$( document ).ready(function() {
   // Bind event listeners when the DOM is ready
   site.addEventHandlers();
-  
   // Add scroll effects
   smoothScroll.init();
- 
-
-
 });
 
