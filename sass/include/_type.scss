@@ -210,23 +210,18 @@ a.map {
 }
 
 
-
 a.social {
-    display: inline-block;
-    width: 50px;
-    height:50px;
-    text-indent: -9999px;
-    overflow: none;
-    margin-top: 2em;
-
-    &:hover,
-    &:focus {
-       fill: #880000;
-       border-style:none;
-    }
-
-    @include bp(wide) {
-    } 
+  display: inline-block;
+  width: 50px;
+  height:50px;
+  text-indent: -9999px;
+  overflow: none;
+  margin-top: 2em;
+  &:hover,
+  &:focus {
+    fill: #880000;
+    border-style:none;
+  }
 }
 
 a.twitter {
@@ -237,35 +232,25 @@ a.facebook {
 }
 
 footer {
-
-    padding-bottom: 2em;
-    
-
+  padding-bottom: 2em;
+  a {
+    margin: 0.25em;
+    &:visited,
+    &:link,
+    &:active {
+      color: #fff;
+    }
+  }
+  .meta {
+    font-size: 0.8em;
+    margin-top: 2em;
+    font-style: italic;
     a {
-        margin: 0.25em;
-
-        &:visited,
-        &:link,
-        &:active {
-            color: #fff;
-        }
-
+      &:visited,
+      &:link,
+      &:active {
+        color: #999;
+      }
     }
-
-    .meta {
-
-        font-size: 0.8em;
-        margin-top: 2em;
-        font-style: italic;
-        
-        a {
-
-            &:visited,
-            &:link,
-            &:active {
-                color: #999;
-            }
-        }
-    }
-
+  }
 }

@@ -14,7 +14,6 @@ const runSequence = require('run-sequence');
 const contentful = require('contentful');
 const mkdirp = require('mkdirp');
 const inject = require('gulp-inject');
-const dates = require("./js/dates.js");
 
 
 // An configuration object to be popualted and passed to the client
@@ -30,6 +29,7 @@ var confs = {
 
 // Add a custom nunjucks environment for custom filters
 const nunj = require('nunjucks');
+const dates = require("./js/dates.js");
 nunj.configure('views');
 var env = new nunj.Environment(new nunj.FileSystemLoader('views'));
 env.addFilter('date', dates.display);
@@ -45,16 +45,11 @@ var client = contentful.createClient({
 });
 
 
-// Clean up output directories
+// Clean up output directory
 gulp.task('clean', function () {
   return gulp.src('dist/*', {read: false})
     .pipe(clean());
 });
-gulp.task('clean-scripts', function () {
-  return gulp.src('dist/js/*', {read: false})
-    .pipe(clean());
-});
-
 
 
 // Compile the views with the data found in the api sepcified in
@@ -138,6 +133,10 @@ gulp.task('api', () =>
 );
 
 
+// Get data from the cloud CMS and stash it locally
+gulp.task('get', ['get:acts', 'get:nights']);
+
+
 // Get the Acts data from the cloud CMS and stash it locally
 gulp.task('get:acts', () =>
   client.getEntries({'content_type':'act'})
@@ -151,9 +150,6 @@ gulp.task('get:acts', () =>
       }
     )
 );
-
-
-
 
 
 // Get the Nights data from the cloud CMS and stash it locally
@@ -186,11 +182,6 @@ gulp.task('get:nights', () =>
       }
     )
 );
-
-
-// Get data from the cloud CMS and stash it locally
-gulp.task('get', ['get:acts', 'get:nights']);
-
 
 
 // Compile the client-side templates

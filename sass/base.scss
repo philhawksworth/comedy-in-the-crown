@@ -3,15 +3,14 @@
 @import 'fonts';
 @import 'type';
 
-
 * {
-    margin:0;
-    padding:0;
+  margin:0;
+  padding:0;
 }
 
 body {
-    background: $page-color;
-    text-align: center;
+  background: $page-color;
+  text-align: center;
 }
 
 .container {

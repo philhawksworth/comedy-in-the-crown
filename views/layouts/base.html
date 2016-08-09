@@ -12,7 +12,7 @@
     {% include "../partials/favicons.html" %}
     <script src="/js/concat.js" async defer></script>
     <script src="/js/templates.js" async defer></script>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -25,11 +25,11 @@
   <body class="{{ pageClass }}" >
     <header id="top">
       <div class="container">
-    {% include "../partials/navigation.html" %}
+      {% include "../partials/navigation.html" -%}
       </div>
     </header>
     <div class="content">
-      {% block content %}{% endblock %}
+      {% block content -%}{% endblock -%}
     </div>
     <footer>
       <div class="container">
@@ -39,8 +39,8 @@
           <a class="acts" href="/acts">Acts</a>
         </p>
         <p>
-          <a class="social twitter" href="https://twitter.com/comedyincrown" target="_BLANK">Twitter</a>
-          <a class="social facebook" href="https://www.facebook.com/comedyinthecrown" target="_BLANK">Facebook</a>
+          <a class="social twitter" href="https://twitter.com/comedyincrown" target="_BLANK" title="Twitter - @comedyincrown">Twitter</a>
+          <a class="social facebook" href="https://www.facebook.com/comedyinthecrown" target="_BLANK" title="Facebook - Comedy in the Crown">Facebook</a>
         </p>
         <p class="meta">
           <a href="https://hawksworx.com/blog/isomorphic-rendering-on-the-jam-stack/">About this site</a>

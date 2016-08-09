@@ -32,8 +32,7 @@
     With your host for the night: {{ performer(gig.mc) }}
   </p>
   {%- endif -%}
-
   {% if gig.facebookEvent -%}
-  <p>Find more details and post photos on the event's <a target="_BLANK" href="{{ gig.facebookEvent }}">Facebook page</a></p>
+  <p>Find more details and post photos on the <a target="_BLANK" href="{{ gig.facebookEvent }}">Facebook page for this event</a></p>
   {% endif -%}
 {%- endmacro -%}
