@@ -1,3 +1,4 @@
+{% import "partials/components.html" as comp %}
 {% set pageClass = "acts" %}
 
 <div class="hero">
@@ -15,11 +16,7 @@
         {% set latestInitial = item.name.substr(0,1) -%}
         <a href="#top" data-scroll class="stamp letter">{{ latestInitial }}</a>
       {% endif -%}
-      {% if item.link -%}
-      <li><a href="{{ item.link }}">{{ item.name }}</a></li>
-      {% else -%}
-      <li>{{ item.name }}</li>
-      {% endif -%}
+      <li>{{ comp.performer(item) }}</li>
     {% else -%}
       <li>This would display if the 'item' collection were empty</li>
     {% endfor -%}

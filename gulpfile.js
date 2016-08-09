@@ -61,7 +61,7 @@ gulp.task('clean-scripts', function () {
 // the template's front-matter.
 // Additional data can be passed in the front-matter
 gulp.task('generate', () =>
-  gulp.src('views/*.html')
+  gulp.src(['views/*.html', '!views/night.html'])
     .pipe(data(function(file) {
       var content = fm(String(file.contents));
       var apiData = {};
@@ -195,7 +195,7 @@ gulp.task('get', ['get:acts', 'get:nights']);
 
 // Compile the client-side templates
 gulp.task('precompile', () =>
-  gulp.src('views/pages/*.html')
+  gulp.src(['views/pages/**/*.html'])
     .pipe(nunjucks.precompile())
     .pipe(concat('templates.js'))
     .pipe(uglify())
@@ -247,7 +247,6 @@ gulp.task('templates:watch', () =>
 gulp.task('serve', function() {
   gulp.src('dist')
     .pipe(webserver({
-      fallback: "greeting.html",
       livereload: false,
       open: false
     }));
@@ -277,5 +276,4 @@ gulp.task('build:prod', function(callback) {
     'build:local',
     callback
   );
-
 });

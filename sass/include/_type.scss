@@ -76,9 +76,14 @@ h3.subtitle {
 }
 
 h4 {
-    font-size: 1.4em; 
-    margin: 1em auto 0em;
+    display: inline-block;
     line-height: 0.9em;
+    padding: 0.5em 1em;
+    margin: 1em auto 0em;
+    background: #000;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1.4em;
 
     @include bp(narrow) {
         font-size: 1.8em;   
@@ -87,7 +92,7 @@ h4 {
         font-size: 2em;
     }
     @include bp(wide) {
-        font-size: 3em;
+        font-size: 2.2em;
     } 
 }
 
@@ -157,7 +162,7 @@ header .navigation {
     display: inline-block;
     position: relative;
     @include rotate(-5deg);
-    bottom: -45px;
+    bottom: -42px;
 
     @include bp(narrow) {
         bottom: -55px;

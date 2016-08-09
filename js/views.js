@@ -70,6 +70,7 @@ var site = {
     } else {
       var view = site.views[path];
     }
+    
     var urls = view.url;
     $.when.apply($, urls.map(function(url) {
       return $.ajax("/" + url);

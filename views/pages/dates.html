@@ -1,3 +1,4 @@
+{% import "partials/components.html" as comp %}
 {% set pageClass = "dates" %}
 <div class="hero">
   <h1>Our gig nights</h1>
@@ -15,85 +16,32 @@
   {% set historicNights = (historicNights.push(item),historicNights) %}
 {% endif %}
 {% endfor %}
-
 <div class="container">
   <h4>Coming Up</h4>
   <ul class="listing">
     {% for item in futureNights | sort(false, attribute='date') -%}
       <li>
-        {% if loop.first %}
+        {% if loop.first -%}
         <h2 class="sticker-next">Our next comedy night</h2>
-        {% endif %}
-        <h2>{{ item.date | date("MMMM Do YYYY") }}</h2>
-        <h3 class="subtitle">{{ item.strapLine }}</h3>
-        <p>{{ item.description }}</p>
-        <h3>Featuring</h3>
-        <ul class="listing">
-          {% for act in item.acts -%}
-            {% if act.link -%}
-            <li><a href="{{ act.link }}">{{ act.name }}</a></li>
-            {% else -%}
-            <li>{{ act.name }}</li>
-            {% endif -%}
-          {%- else -%}
-          <li><p>...who knows? Perhaps you might be performing. To get a spot at this, or another Comedy in the Crown night, email us at <a href="mailto:bookings@comedyinthecrown.com">bookings@comedyinthecrown.com</a></p></li>  
-          {% endfor %}
-        </ul>
-        <p>
-          Your host for the night will be 
-          {% if item.mc.link %}
-           <a href="{{  item.mc.link }}">{{  item.mc.name }}</a>
-          {% else %}
-           {{ item.mc.name }}
-          {% endif %}
-        </p>
-        {% if item.facebookEvent -%}
-        <p>Find more details and post photos on the event's <a target="_BLANK" href="{{ item.facebookEvent }}">Facebook page</a></p>
-        {% endif -%}
+          {{ comp.gigDetails(item, "full") }}
+        {%- else -%}
+          {{ comp.gigDetails(item, "short") }}
+        {%- endif -%}
       </li>
       {% if not loop.last -%}
       <a href="#top" data-scroll class="stamp mic">Back to top</a>
       {% endif -%}
     {% endfor -%}
   </ul>
-
   <h4>Nights gone by</h4>
   <ul class="listing">
     {% for item in historicNights | sort(true, attribute='date') -%}
       <li>
-        <h2><a href="/on/{{ item.date | urlify() }}">{{ item.date | date }}</a></h2>
-        <h3 class="subtitle">{{ item.strapLine }}</h3>
-        <p>{{ item.description }}</p>
-        <h3>Featuring</h3>
-        <ul class="listing">
-          {% for act in item.acts -%}
-            {% if act.link -%}
-            <li><a href="{{ act.link }}">{{ act.name }}</a></li>
-            {% else -%}
-            <li>{{ act.name }}</li>
-            {% endif -%}
-          {% endfor %}
-        </ul>
-        <p>
-          And your host for the night was
-          {% if item.mc.link %}
-           <a href="{{  item.mc.link }}">{{  item.mc.name }}</a>
-          {% else %}
-           {{ item.mc.name }}
-          {% endif %}
-        </p>
-        {% if item.facebookEvent -%}
-        <p>Find more details and post photos on the event's <a target="_BLANK" href="{{ item.facebookEvent }}">Facebook page</a></p>
-        {% endif -%}
+        {{ comp.gigDetails(item, "short") }}
       </li>
       {% if not loop.last -%}
       <a href="#top" data-scroll class="stamp mic">Back to top</a>
       {% endif -%}
     {% endfor -%}
   </ul>
-
-
-
-
-
 </div>

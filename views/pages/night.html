@@ -1,3 +1,4 @@
+{% import "partials/components.html" as comp %}
 {% set pageClass = "dates" %}
 {%- set gig = "" -%}
 {%- for item in api.nights -%}
@@ -15,20 +16,13 @@
   <h3>Featuring</h3>
   <ul class="listing">
     {% for act in gig.acts -%}
-      {% if act.link -%}
-      <li><a href="{{ act.link }}">{{ act.name }}</a></li>
-      {%- else -%}
-      <li>{{ act.name }}</li>
-      {% endif -%}
+    <li>{{ comp.performer(act) }}</li>
     {% endfor -%}
   </ul>
   <p>
-    And your host for the night was
-    {% if gig.mc.link %}
-      <a href="{{  gig.mc.link }}">{{  gig.mc.name }}</a>
-    {% else %}
-      {{ gig.mc.name }}
-    {% endif %}
+    And your host for the night: {{ comp.performer(gig.mc) }}
   </p>
-  <p>Find more details and post photos on the event's <a href="">Facebook page</a></p>
+  {% if gig.facebookEvent -%}
+  <p>Find more details and post photos on the event's <a target="_BLANK" href="{{ gig.facebookEvent }}">Facebook page</a></p>
+  {% endif -%}
 </div>
