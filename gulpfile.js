@@ -221,7 +221,7 @@ gulp.task('images', () =>
 
 // Ensure any config files make to the dist folder
 gulp.task('configs', () =>
-  gulp.src(['_redirects',])
+  gulp.src(['_redirects','browserconfig.xml','manifest.json'])
     .pipe(gulp.dest('dist'))
 );
 
