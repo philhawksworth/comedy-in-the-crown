@@ -1,5 +1,10 @@
 {
- "name": "App",
+ "name": "Comedy in the Crown",
+ "start_url" : "/",
+ "scope": "/",
+ "display" : "standalone",
+ "theme_color" : "#992222",
+ "background_coloy" : "#f0f0f0",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",

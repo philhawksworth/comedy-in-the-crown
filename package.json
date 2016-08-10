@@ -2,7 +2,7 @@
   "name": "comedyinthecrown",
   "version": "1.0.0",
   "description": "A static site for a free comedy night",
-  "main": "index.js",
+  "main": "gulpfile.js",
   "author": "Phil Hawksworth",
   "license": "ISC",
   "devDependencies": {
