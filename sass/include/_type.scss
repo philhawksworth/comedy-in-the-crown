@@ -113,6 +113,14 @@ a {
     }
 }
 
+h2 a {
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+        border-style:none;
+    }
+}
+
 .navigation {
     list-style: none;
     li {
