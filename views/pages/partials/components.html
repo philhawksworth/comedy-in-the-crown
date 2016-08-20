@@ -10,7 +10,7 @@
 {%- macro gigDetails(gig, format) -%}
   {%- if format == "short" -%}
   <h2><a href="/on/{{ gig.date | urlify() }}">{{ gig.date | date }}</a></h2>
-  {%- else -%}
+  {%- elif format == "full" -%}
   <h2>{{ gig.date | date }}</h2>
   {%- endif -%}
   <h3 class="subtitle">{{ gig.strapLine }}</h3>
@@ -19,20 +19,17 @@
   <h3>Featuring</h3>
   <ul class="listing">
     {% for act in gig.acts -%}
-    {% if act.link -%}
-    <li><a href="{{ act.link }}">{{ act.name }}</a></li>
-    {% else -%}
-    <li>{{ act.name }}</li>
-    {% endif -%}
+    <li>{{ performer(act) }}</li>
     {%- else -%}
     <li><p>...who knows? Perhaps you might be performing. To get a spot at this, or another Comedy in the Crown night, email us at <a href="mailto:bookings@comedyinthecrown.com">bookings@comedyinthecrown.com</a></p></li>        
     {% endfor %}
   </ul>
+  {%- if gig.acts.length > 0 -%}
   <p>
     With your host for the night: {{ performer(gig.mc) }}
   </p>
   {%- endif -%}
-
+  {%- endif -%}
   {% if gig.facebookEvent -%}
   <p>Find more details and post photos on the <a target="_BLANK" href="{{ gig.facebookEvent }}">Facebook page for this event</a></p>
   {% endif -%}

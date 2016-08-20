@@ -62,7 +62,7 @@ gulp.task('generate', () =>
       var apiData = {};
       var apiUrls = []; // for our configs file in view.js
       for (var i = 0; i < content.attributes.api.length; i++) {
-        var source = content.attributes.api[i].split(".json")[0].split("/")[1]; // better with a regexp.
+        var source = content.attributes.api[i].split(".json")[0].split("/")[1]; // better with a regex.
         apiUrls.push(content.attributes.api[i]);
         apiData[source] = require("./" + content.attributes.api[i]);
       }
@@ -94,7 +94,7 @@ gulp.task('generate', () =>
 
 
 
-// copy the api files to the output directory
+// Generate a page for each gig
 gulp.task('generate:nights', function() {
   var apiData = require("./api/nights.json");
   var data = {

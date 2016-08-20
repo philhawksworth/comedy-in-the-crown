@@ -158,3 +158,15 @@ img.mic {
         margin-bottom: -2em;
     } 
 }
+
+
+.night-hero {
+    margin-bottom:1em;
+
+    @include bp(mid) {
+        margin-bottom:3em;
+    } 
+    @include bp(wide) {
+        margin-bottom:4em;
+    } 
+}

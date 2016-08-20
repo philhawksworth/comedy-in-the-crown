@@ -1,5 +1,5 @@
 {% import "partials/components.html" as comp %}
-{% set pageClass = "dates" %}
+{% set pageClass = "night" %}
 {%- set gig = "" -%}
 {%- for item in api.nights -%}
   {%- set testDate = item.date | urlify -%}
@@ -7,22 +7,9 @@
     {%- set gig = item -%}
   {%- endif -%}
 {%- endfor -%}
-<div class="hero">
+<div class="hero night-hero">
   <h1>{{ gig.date | date }}</h1>
 </div>
 <div class="container">
-  <h2>{{ gig.strapLine }}</h2>
-  <p>{{ gig.description }}</p>
-  <h3>Featuring</h3>
-  <ul class="listing">
-    {% for act in gig.acts -%}
-    <li>{{ comp.performer(act) }}</li>
-    {% endfor -%}
-  </ul>
-  <p>
-    And your host for the night: {{ comp.performer(gig.mc) }}
-  </p>
-  {% if gig.facebookEvent -%}
-  <p>Find more details and post photos on the <a target="_BLANK" href="{{ gig.facebookEvent }}">Facebook page for this event</a></p>
-  {% endif -%}
+{{ comp.gigDetails(gig, "specific") }}
 </div>
