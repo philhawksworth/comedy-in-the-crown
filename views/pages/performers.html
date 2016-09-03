@@ -4,7 +4,7 @@
 <div class="hero">
   <h1>Performers</h1>
   <p>
-    Our family of performers keeps on growing and growing. From first-timers to professionals, we have been delighted to have had performances from all of these lovely people:
+    From first-timers to professionals, we have been delighted to have had performances from {{ api.acts.length }} different lovely people. And our family of performers keeps on growing and growing. <a href="#bookings" data-scroll>Join them</a>?
   </p>
 </div>
 <div class="container">
@@ -22,5 +22,5 @@
     {% endfor -%}
   </ul>
   <a href="#top" data-scroll class="stamp mic">Back to top</a>
-  <p>If you want to join them as performers at Comedy in the Crown, email us at <a href="mailto:bookings@comedyinthecrown.com">bookings@comedyinthecrown.com</a></p>
+  <p id="bookings">If you want to join them as performers at Comedy in the Crown, email us at <a href="mailto:bookings@comedyinthecrown.com">bookings@comedyinthecrown.com</a></p>
 </div>

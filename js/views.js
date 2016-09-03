@@ -21,7 +21,7 @@ env.addFilter('upcoming', function(str){
   return (test - now > 0);
 });
 
-env.addFilter('urlify', function(str){  
+env.addFilter('urlify', function(str){
   function figures(str, length) {
     var paddedStr = '00000' + str;
     return paddedStr.slice(-length);
@@ -43,7 +43,7 @@ var site = {
       e.preventDefault();
       site.loadPage(e.target.pathname);
       site.setAddress(e.target.pathname);
-      $(e.target).blur();  
+      $(e.target).blur();
       $('header .home').addClass('swell');
     });
     // perform client-side content render for browser history navigation
@@ -51,7 +51,7 @@ var site = {
       if(e.state.path){
         site.loadPage(e.state.path);
       }
-    };  
+    };
   },
 
 
@@ -59,9 +59,11 @@ var site = {
   // set the address in the browser history
   // render the page
   loadPage : function(path) {
-    
+
     //fire analytics
-    ga('send', 'pageview', path);
+    if(typeof ga !== 'undefined') {
+      ga('send', 'pageview', path);
+    }
 
     // match all of the different gig event urls
     if (/\/on\/(.*)/.test(path)) {
@@ -70,7 +72,7 @@ var site = {
     } else {
       var view = site.views[path];
     }
-    
+
     var urls = view.url;
     $.when.apply($, urls.map(function(url) {
       return $.ajax("/" + url);
@@ -84,11 +86,11 @@ var site = {
       var response;
       if(urls.length == 1){
         response = arguments[0];
-        var objName = site.resolveObjectName(urls[0]);  
+        var objName = site.resolveObjectName(urls[0]);
         results.api[objName] = response;
       } else {
         for (var result = 0; result < arguments.length; result++) {
-          var objName = site.resolveObjectName(urls[result]);      
+          var objName = site.resolveObjectName(urls[result]);
           results.api[objName] = arguments[result][0];
         }
       }
