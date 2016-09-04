@@ -19,11 +19,11 @@ const inject = require('gulp-inject');
 // An configuration object to be popualted and passed to the client
 // for render view configurations.
 // The /on path is hardcoded here until it can be autognerated
-var confs = { 
+var confs = {
   "views" : {
     "/on/" : {"url": ["api/nights.json"],
       "template": "night"
-    } 
+    }
   }
 };
 
@@ -40,7 +40,7 @@ env.addFilter('urlify', dates.urlify);
 // set up the contentful query client
 // readonly access from these creds
 var client = contentful.createClient({
-  space: 'ot0mnooc6nee', 
+  space: 'ot0mnooc6nee',
   accessToken: 'c685bb6a2978131d6e287e6e1a6c1b1b71ce6cf3c7a3be2caa43cc6b4ec580eb'
 });
 
@@ -93,7 +93,6 @@ gulp.task('generate', () =>
 );
 
 
-
 // Generate a page for each gig
 gulp.task('generate:nights', function() {
   var apiData = require("./api/nights.json");
@@ -137,19 +136,14 @@ gulp.task('api', () =>
 gulp.task('get', ['get:acts', 'get:nights']);
 
 
+
 // Get the Acts data from the cloud CMS and stash it locally
-gulp.task('get:acts', () =>
-  client.getEntries({'content_type':'act'})
-    .then(
-      function(resp) {
-        var dataObject = [];
-        for (var item = 0; item < resp.items.length; item++) {
-          dataObject.push(resp.items[item].fields)
-        }
-        fs.writeFileSync('api/acts.json', JSON.stringify(dataObject)); 
-      }
-    )
-);
+gulp.task('get:acts', function() {
+  getBatch('act', 0, function(acts){
+    fs.writeFileSync('api/acts.json', JSON.stringify(acts));
+  });
+});
+
 
 
 // Get the Nights data from the cloud CMS and stash it locally
@@ -178,10 +172,36 @@ gulp.task('get:nights', () =>
 
           dataObject.push(thisNight);
         }
-        fs.writeFileSync('api/nights.json', JSON.stringify(dataObject)); 
+        fs.writeFileSync('api/nights.json', JSON.stringify(dataObject));
       }
     )
 );
+
+
+
+// Get data from Contentful in batches of 100
+function getBatch(type, skip, callback, batch) {
+  var config = {
+    'content_type':type,
+    'skip': skip
+  };
+  if(typeof batch == "undefined") {
+    var batch = [];
+  }
+  client.getEntries(config)
+  .then(
+    function(resp) {
+      for (var item = 0; item < resp.items.length; item++) {
+        batch.push(resp.items[item].fields)
+      }
+      if(resp.total > resp.limit) {
+        getBatch(type, resp.skip + resp.limit, callback, batch)
+      } else {
+        callback(batch);
+      }
+    }
+  )
+}
 
 
 // Compile the client-side templates
