@@ -216,7 +216,7 @@ gulp.task('precompile', () =>
 
 // Combine and compress javascript
 gulp.task('scripts', () =>
-  gulp.src(['js/libs/*.js', "js/views.js", "js/configs.js"])
+  gulp.src(['js/libs/*.js', "js/dates.js", "js/views.js", "js/configs.js"])
     .pipe(concat('concat.js'))
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'))
