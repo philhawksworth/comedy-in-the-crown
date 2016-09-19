@@ -22,7 +22,7 @@ body {
 header {
     float: left;
     width: 100%;
-    
+
     .home {
         @include circle(80px, transparent, #fff, inline-block);
         text-indent: -9999px;
@@ -31,7 +31,7 @@ header {
         background-position-x: center;
         background-position-y: center;
         background-size:30%;
-        
+
         @include bp(mid) {
             @include circle(100px, transparent, #fff, inline-block);
             background: url('/images/mic.svg') no-repeat;
@@ -45,8 +45,8 @@ header {
             background-position-x: center;
             background-position-y: center;
             background-size:35%;
-        } 
-    
+        }
+
     }
 
     * {
@@ -69,7 +69,7 @@ header {
 }
 
 .content {
-   background: #f0f0f0; 
+   background: #f0f0f0;
    text-align: center;
 
    p {
@@ -79,13 +79,13 @@ header {
 
         @include bp(narrow) {
             width:90%;
-        } 
+        }
         @include bp(mid) {
             width:70%;
         }
         @include bp(wide) {
             width:50%;
-        } 
+        }
    }
 }
 
@@ -103,7 +103,7 @@ header {
 
     @include bp(mid) {
         background: #992222 url('/images/curtain.jpg') bottom center;
-    } 
+    }
 }
 
 
@@ -152,11 +152,11 @@ img.mic {
 
     @include bp(mid) {
         display: inline-block;
-    } 
+    }
 
     @include bp(wide) {
         margin-bottom: -2em;
-    } 
+    }
 }
 
 
@@ -165,8 +165,8 @@ img.mic {
 
     @include bp(mid) {
         margin-bottom:3em;
-    } 
+    }
     @include bp(wide) {
         margin-bottom:4em;
-    } 
+    }
 }

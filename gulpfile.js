@@ -83,7 +83,7 @@ gulp.task('generate', () =>
     }))
     .pipe(nunjucks.compile(null, {"env" : env}))
     .pipe(prettyUrl())
-    .pipe(inject(gulp.src(['./dist/style/*.css']), {
+    .pipe(inject(gulp.src(['./dist/style/base.css']), {
       starttag: '<!-- inject:css -->',
       removeTags: true,
       transform: function (filePath, file) {
@@ -114,7 +114,7 @@ gulp.task('generate:nights', function() {
 
   // perform the css injection to each of the new pages.
   gulp.src('./dist/on/*/index.html')
-    .pipe(inject(gulp.src(['./dist/style/*.css']), {
+    .pipe(inject(gulp.src(['./dist/style/base.css']), {
       starttag: '<!-- inject:css -->',
       removeTags: true,
       transform: function (filePath, file) {
@@ -240,10 +240,16 @@ gulp.task('configs', () =>
 
 // Compile CSS from Sass
 gulp.task('sass', () =>
-  gulp.src(['sass/**/*.scss'])
+  gulp.src(['sass/base.scss'])
     .pipe(sass({outputStyle: 'compressed', includePaths: ['./sass/include']}).on('error', sass.logError))
     .pipe(gulp.dest('dist/style'))
 );
+
+gulp.task('sass:print', function() {
+  gulp.src(['sass/print.scss'])
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(gulp.dest('dist/style'));
+});
 
 
 // Watchers
@@ -273,7 +279,7 @@ gulp.task('watch', ['sass:watch', 'templates:watch']);
 gulp.task('build:local', function(callback) {
   runSequence(
     'clean',
-    'sass',
+    ['sass', 'sass:print'],
     'generate',
     ['images', 'scripts', 'precompile', 'api', 'configs'],
     'generate:nights',
