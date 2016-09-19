@@ -18,7 +18,7 @@ api: [api/nights.json]
   <div class="column-1">
   <h1>Performing tonight ({{ gig.acts.length }})</h1>
   <table class="register">
-    <tr><th>Name</th><th>Here</th><th>In</th></tr>
+    <tr><th>Name</th><th>Arrived</th><th>Assigned</th></tr>
   {% for act in gig.acts|sort(attribute='name') -%}
     <tr><td>{{ act.name }}</td><td></td><td></td></tr>
   {% endfor %}
