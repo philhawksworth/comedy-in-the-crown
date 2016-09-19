@@ -1,0 +1,72 @@
+
+form {
+
+  p {
+    text-align: left;
+    margin: 0 0 0 0;
+  }
+
+}
+
+
+label {
+  text-align: left;
+  font-size: 0.9em;
+  display:block;
+  color: lighten($text-color, 20%);
+}
+
+input[type=text],
+input[type=email],
+textarea {
+  display:block;
+  font-size: 1.1em;
+  padding: 0.3em;
+  border: solid 1px #ccc;
+  background-color: #fff;
+  color: #222;
+  border-radius: 2px;
+  width: 100%
+}
+
+a.map,
+input[type=submit] {
+
+    font-family: 'league_gothicregular';
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 1.8em;
+    padding: 0.6em 1em;
+    margin: 0 auto 1em;
+    border-radius: 3px;
+    display: inline-block;
+    border: solid 4px $link-color-dark;
+    background-color: #fff;
+    color: $link-color-dark;
+
+    @include bp(wide) {
+      font-size: 2.2em;
+    }
+
+
+    &:visited,
+    &:link,
+    &:active {
+        color: $link-color-dark;
+    }
+    &:hover,
+    &:focus {
+        color: #fff;
+        background-color: $link-color-dark;
+    }
+
+}
+
+
+
+textarea {
+  height:4em;
+}
+.netlify-filter {
+  display: none;
+}

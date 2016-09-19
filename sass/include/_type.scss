@@ -12,17 +12,17 @@ h1, h2, h3, h4 {
     font-weight: normal;
 }
 
-h1 { 
+h1 {
     display: inline-block;
-    font-size: 2.5em; 
+    font-size: 2.5em;
     margin: 0.5em 0 1em;
     padding:0 0 0.2em;
     border-bottom: solid 0.12em #fff;
-    
+
     @include bp(narrow) {
         font-size: 3em;
         padding-bottom: 0.3em;
-    } 
+    }
     @include bp(mid) {
         font-size: 4em;
     }
@@ -30,17 +30,17 @@ h1 {
         font-size: 6em;
         padding-bottom: 0.4em;
         margin-bottom: 0.6em;
-    } 
+    }
 }
 
-h2 { 
-    font-size: 2.4em; 
+h2 {
+    font-size: 2.4em;
     margin: 1em 0 0.2em;
     line-height: 1em;
-    
+
     @include bp(narrow) {
         font-size: 2.6em;
-    } 
+    }
     @include bp(mid) {
         font-size: 3em;
     }
@@ -53,21 +53,21 @@ h2 {
     }
 }
 
-h3 { 
-    font-size: 2em; 
+h3 {
+    font-size: 2em;
     margin: 0.6em auto 0.5em;
     line-height: 0.9em;
-    
+
     @include bp(narrow) {
         font-size: 2.3em;
-    } 
+    }
     @include bp(mid) {
         font-size: 4em;
     }
     @include bp(wide) {
         font-size: 6em;
         width:75%;
-    } 
+    }
 }
 
 h3.subtitle {
@@ -86,14 +86,14 @@ h4 {
     font-size: 1.4em;
 
     @include bp(narrow) {
-        font-size: 1.8em;   
-    } 
+        font-size: 1.8em;
+    }
     @include bp(mid) {
         font-size: 2em;
     }
     @include bp(wide) {
         font-size: 2.2em;
-    } 
+    }
 }
 
 a {
@@ -133,7 +133,7 @@ h2 a {
 
         @include bp(wide) {
             font-size: 1.1em;
-        } 
+        }
 
         &:visited,
         &:link,
@@ -175,7 +175,7 @@ header .navigation {
     @include bp(narrow) {
         bottom: -55px;
         left: -100px;
-    } 
+    }
     @include bp(mid) {
         bottom: -60px;
         left: -100px;
@@ -184,38 +184,9 @@ header .navigation {
         font-size: 1.4em;
         bottom: -80px;
         left: -150px;
-    } 
+    }
 }
 
-
-a.map {
-    
-    font-family: 'league_gothicregular';
-    text-transform: uppercase;
-    font-weight: normal;
-    font-size: 1.8em;
-    padding: 0.6em 1em;
-    margin: 0 auto 1em;
-    border-radius: 3px;
-    display: inline-block;
-    border: solid 4px $link-color-dark;
-    background-color: #fff;
-    
-    &:visited,
-    &:link,
-    &:active {
-        color: $link-color-dark;
-    }
-    &:hover,
-    &:focus {
-        color: #fff;
-        background-color: $link-color-dark;
-    }
-
-    @include bp(wide) {
-        font-size: 2.2em;
-    }    
-}
 
 
 a.social {
