@@ -17,8 +17,8 @@ api: [api/nights.json]
   {% if loop.first %}
   <div class="column-1">
   <h1>Performing tonight ({{ gig.acts.length }})</h1>
-  <table class="listing">
-    <tr><th>Name</th><th>Arrived</th><th>Assigned</th></tr>
+  <table class="register">
+    <tr><th>Name</th><th>Here</th><th>In</th></tr>
   {% for act in gig.acts|sort(attribute='name') -%}
     <tr><td>{{ act.name }}</td><td></td><td></td></tr>
   {% endfor %}

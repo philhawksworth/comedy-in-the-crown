@@ -3,6 +3,10 @@ body {
     font-family: sans-serif;
 }
 
+h1, th {
+  font-size: 1em;
+}
+
 table {
   text-align: left;
 }
@@ -23,11 +27,11 @@ td, th {
 }
 
 .order td {
-    line-height: 4em;
-    width: 18em;
+    line-height: 3em;
+    width: 16em;
 }
-.listing td {
-  font-size:0.8em;
+.register td {
+  font-size:0.7em;
 }
 
 @media print {
