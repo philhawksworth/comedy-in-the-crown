@@ -1,0 +1,42 @@
+---
+api: [api/nights.json]
+---
+
+{% extends printTemplate %}
+{% import "partials/components.html" as comp %}
+
+{%- set futureNights = [] -%}
+{%- for item in api.nights -%}
+  {%- if item.date | upcoming -%}
+  {%- set futureNights = (futureNights.push(item),futureNights) -%}
+  {%- endif  -%}
+{%- endfor -%}
+
+{% block content %}
+{% for gig in futureNights | sort(false, attribute='date') -%}
+  {% if loop.first %}
+  <div class="column-1">
+  <h1>Performing tonight ({{ gig.acts.length }})</h1>
+  <table class="listing">
+    <tr><th>Name</th><th>Arrived</th><th>Assigned</th></tr>
+  {% for act in gig.acts|sort(attribute='name') -%}
+    <tr><td>{{ act.name }}</td><td></td><td></td></tr>
+  {% endfor %}
+  </table>
+  </div>
+  <div class="column-2">
+  <h1>Running order</h1>
+  <table class="order">
+    <tr><th>First Half</th><th>Second Half</th></tr>
+    <tr><td>1</td><td>1</td></tr>
+    <tr><td>2</td><td>2</td></tr>
+    <tr><td>3</td><td>3</td></tr>
+    <tr><td>4</td><td>4</td></tr>
+    <tr><td>5</td><td>5</td></tr>
+    <tr><td>6</td><td>6</td></tr>
+    <tr><td>7</td><td>7</td></tr>
+  </table>
+  </div>
+  {% endif -%}
+{% endfor -%}
+{% endblock %}

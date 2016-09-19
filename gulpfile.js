@@ -68,6 +68,7 @@ gulp.task('generate', () =>
       }
       content.attributes.api = apiData ;
       content.attributes.baseTemplate = "./layouts/base.html";
+      content.attributes.printTemplate = "./layouts/print.html";
       // build a configs object for use as a reference in the client
       var name = "/" + file.path.replace(file.base, "").replace(".html","");
       if(name == "/index") {

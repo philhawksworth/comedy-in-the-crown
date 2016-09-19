@@ -1,0 +1,38 @@
+body {
+    line-height: 1.6em;
+    font-family: sans-serif;
+}
+
+table {
+  text-align: left;
+}
+
+th {
+  background-color: #eee;
+}
+
+td, th {
+  border: solid 1px #ccc;
+  padding: 0.2em 1em;
+}
+
+.column-1,
+.column-2 {
+  float:left;
+  margin: 0.5em;
+}
+
+.order td {
+    line-height: 4em;
+    width: 18em;
+}
+.listing td {
+  font-size:0.8em;
+}
+
+@media print {
+  .column-2 {
+    page-break-before: always;
+  }
+}
+
