@@ -153,6 +153,7 @@ gulp.task('get:nights', () =>
     .then(
       function(resp) {
         var dataObject = [];
+
         for (var item = 0; item < resp.items.length; item++) {
           var thisNight = resp.items[item].fields;
           var thisNightsActs = [];
@@ -171,9 +172,46 @@ gulp.task('get:nights', () =>
             thisNight.mc = mc;
           }
 
+
+          var thisNightsPhotos = [];
+          if (thisNight.photos) {
+
+            // console.log(thisNight.photos);
+
+            var photos = thisNight.photos;
+            // console.log(JSON.stringify(photos));
+
+            for(var photo = 0; photo < photos.length; photo++) {
+              thisNightsPhotos.push({
+                "url": photos[photo].fields.file.url,
+                "title" : photos[photo].fields.title
+              });
+
+              // console.log("PHOTO: " , JSON.stringify(thisNightsPhotos));
+
+            }
+          }
+          delete thisNight.photos;
+          thisNight.pictures = thisNightsPhotos;
+
+        console.log("PHOTO: " , JSON.stringify(thisNight.pictures));
+
           dataObject.push(thisNight);
         }
         fs.writeFileSync('api/nights.json', JSON.stringify(dataObject));
+      }
+    )
+);
+
+
+
+
+// Get the image assets
+gulp.task('get:images', () =>
+  client.getEntries({'content_type':'assets'})
+    .then(
+      function(resp) {
+        console.log(resp);
       }
     )
 );

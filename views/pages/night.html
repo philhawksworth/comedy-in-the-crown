@@ -14,4 +14,15 @@
 </div>
 <div class="container">
 {{ comp.gigDetails(gig, "specific") }}
+
+{% if gig.pictures.length > 0 %}
+<h3>Photos</h3>
+<div class="gallery">
+{%- for photo in gig.pictures -%}
+<a href="https:{{ photo.url }}"><img src="https:{{ photo.url }}?h=100&w=100&fit=thumb" alt="{{ photo.title }}" /></a>
+{%- endfor -%}
 </div>
+{% endif %}
+
+</div>
+

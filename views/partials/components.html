@@ -8,9 +8,7 @@
 
 
 {%- macro gigDetails(gig, format) -%}
-  {%- if format == "specific" -%}
-  <h2>{{ gig.date | date }}</h2>
-  {%- else -%}
+  {%- if format != "specific" -%}
   <h2><a href="/on/{{ gig.date | urlify() }}">{{ gig.date | date }}</a></h2>
   {%- endif -%}
   <h3 class="subtitle">{{ gig.strapLine }}</h3>
