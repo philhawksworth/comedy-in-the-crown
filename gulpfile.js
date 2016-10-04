@@ -172,30 +172,18 @@ gulp.task('get:nights', () =>
             thisNight.mc = mc;
           }
 
-
           var thisNightsPhotos = [];
           if (thisNight.photos) {
-
-            // console.log(thisNight.photos);
-
             var photos = thisNight.photos;
-            // console.log(JSON.stringify(photos));
-
             for(var photo = 0; photo < photos.length; photo++) {
               thisNightsPhotos.push({
                 "url": photos[photo].fields.file.url,
                 "title" : photos[photo].fields.title
               });
-
-              // console.log("PHOTO: " , JSON.stringify(thisNightsPhotos));
-
             }
           }
           delete thisNight.photos;
           thisNight.pictures = thisNightsPhotos;
-
-        console.log("PHOTO: " , JSON.stringify(thisNight.pictures));
-
           dataObject.push(thisNight);
         }
         fs.writeFileSync('api/nights.json', JSON.stringify(dataObject));
