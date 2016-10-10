@@ -78,7 +78,7 @@ gulp.task('generate', () =>
         "url" : apiUrls,
         "template" : content.attributes.body
       }
-      fs.writeFileSync('js/configs.js', "site.views = " + JSON.stringify(confs.views));
+      fs.writeFileSync('js/configs.js', "site.views = " + JSON.stringify(confs.views)+ ";");
       return content.attributes;
     }))
     .pipe(nunjucks.compile(null, {"env" : env}))
@@ -243,7 +243,7 @@ gulp.task('precompile', () =>
 
 // Combine and compress javascript
 gulp.task('scripts', () =>
-  gulp.src(['js/libs/*.js', "js/dates.js", "js/views.js", "js/configs.js"])
+  gulp.src(['js/libs/*.js', "js/dates.js", "js/views.js", "js/configs.js", "js/analytics.js"])
     .pipe(concat('concat.js'))
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'))
