@@ -1,15 +1,12 @@
 var env = new nunjucks.Environment();
 
 env.addFilter('date', dateFilter.display);
-
 env.addFilter('upcoming', dateFilter.upcoming);
-
 env.addFilter('urlify', dateFilter.urlify);
 
 var site = {
 
   //views object now generated from gulp task and added later (to keep things DRY)
-
 
   // create event handlers
   addEventHandlers : function () {
@@ -49,10 +46,12 @@ var site = {
     }
 
     var urls = view.url;
+
     $.when.apply($, urls.map(function(url) {
       return $.ajax("/" + url);
     }))
     .done(function() {
+
       // build a single data object keyed to pass the data to the templates
       var results = {
         "api" : {},
