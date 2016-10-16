@@ -22,7 +22,7 @@
     <li><p>...who knows? Perhaps you might be performing. To get a spot at this, or another Comedy in the Crown night, email us at <a href="mailto:bookings@comedyinthecrown.com">bookings@comedyinthecrown.com</a></p></li>
     {% endfor %}
   </ul>
-  {%- if gig.mc.length > 0 -%}
+  {%- if gig.mc -%}
   <p>
     With your host for the night: {{ performer(gig.mc) }}
   </p>
