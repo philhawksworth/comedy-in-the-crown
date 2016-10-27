@@ -29,3 +29,4 @@ After cloning this repository, all dependencies can be installed be running `npm
 - `gulp build:prod` - Retrieves the latest content data from Contentful, stashes it in a local API and then executes `gulp build:local`
 - `gulp build:local` - Executes the compilation of the entire build from a local stash of the content data api.
 - `gulp watch` - Regenerates templates, css and scripts when changes to those resources are detected.
+- `gulp serve` - Serves the output of the build on a local web server.
