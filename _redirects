@@ -3,3 +3,6 @@
 
 # Capture people who play with the nights URLs
 /on                     /dates
+
+# test the passthrough with a 200
+/viewport               http://viewportify.hawksworx.com/   200
