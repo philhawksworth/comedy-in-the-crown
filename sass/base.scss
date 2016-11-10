@@ -107,6 +107,14 @@ header {
     }
 }
 
+.hero-past {
+    background: #223333 url('/images/curtain-lights-out-mid.jpg') bottom center;
+
+    @include bp(mid) {
+        background: #223333 url('/images/curtain-lights-out.jpg') bottom center;
+    }
+}
+
 
 a.mic {
     border-style:none;

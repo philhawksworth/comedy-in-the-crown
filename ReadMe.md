@@ -18,14 +18,15 @@ Content for this site is managed on [Contentful](https://contentful.com). Conten
 
 ## Hosting
 
-The site is hosted on [Netlify](https://netlify.com) as a static build. 
+The site is hosted on [Netlify](https://netlify.com) as a static build.
 
 
 ## Development
 
-After cloning this repository, all dependencies can be installed be running `npm install`. Once this is done, Gulp provides a numebr of buold options:
+After cloning this repository, all dependencies can be installed be running `npm install`. Once this is done, Gulp provides a number of build options:
 
 - `gulp` - defaults to `gulp build:local`
-- `gulp build:prod` - Retreives the latest content data from Contentful, stashes it in a local API and thenn executes `gulp build:local`
+- `gulp build:prod` - Retrieves the latest content data from Contentful, stashes it in a local API and then executes `gulp build:local`
 - `gulp build:local` - Executes the compilation of the entire build from a local stash of the content data api.
 - `gulp watch` - Regenerates templates, css and scripts when changes to those resources are detected.
+- `gulp serve` - Serves the output of the build on a local web server.
