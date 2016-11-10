@@ -250,7 +250,7 @@ gulp.task('scripts', () =>
 );
 
 
-// Combine and compress javascript
+// Optimise images and add to the dist
 gulp.task('images', () =>
   gulp.src(['images/**/*'])
     .pipe(gulp.dest('dist/images'))
