@@ -3,3 +3,6 @@
 
 # Capture people who play with the nights URLs
 /on                     /dates
+
+
+/search                http://google.com    200
