@@ -41,7 +41,7 @@ env.addFilter('urlify', dates.urlify);
 // readonly access from these creds
 var client = contentful.createClient({
   space: 'ot0mnooc6nee',
-  accessToken: 'c685bb6a2978131d6e287e6e1a6c1b1b71ce6cf3c7a3be2caa43cc6b4ec580eb'
+  accessToken: 'f4fda8fe98ee467b1638ca7617931b09a58aebc00e5c52f2fb8aace1e6393b22'
 });
 
 
