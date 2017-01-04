@@ -39,18 +39,18 @@
   <p>Tell us a little about yourself and we'll get back to you as soon as we can.</p>
   <form name="register" action="/thanks/" netlify netlify-honeypot="real-name">
     <p>
-      <label>Your name:</label>
+      <label for="name">Your name:</label>
       <input type="text" name="name">
     </p>
     <p>
-      <label>Your email address:</label>
+      <label for="email">Your email address:</label>
       <input type="email" name="email">
     </p>
     <p>
-      <label>Message:</label>
+      <labe for="message"l>Message:</label>
       <textarea name="message"></textarea>
     </p>
-    <p class="netlify-filter"><label>Really?<input name="real-name"></label></p>
+    <p class="netlify-filter"><label for="real-name">Really?<input name="real-name"></label></p>
     <input type="submit" value="Request a spot" />
 
   </form>
