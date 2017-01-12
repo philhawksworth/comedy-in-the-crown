@@ -4,3 +4,5 @@
 # Capture people who play with the nights URLs
 /on                     /dates
 
+
+/sls                    https://w04p8v061j.execute-api.us-east-1.amazonaws.com/dev/hello    200
