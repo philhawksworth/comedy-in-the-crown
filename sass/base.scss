@@ -195,3 +195,43 @@ img.mic {
   }
 
 }
+
+
+.screen {
+
+    body,
+    .content {
+        background: $text-color;
+        color: $off-white-color;
+    }
+    header,
+    footer {
+        display: none;
+    }
+    
+
+    .screen--banner {
+        font-size: 8em;
+    }
+
+    .screen--featuring {
+        
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        ul {
+            list-style: none;
+            width: 60%;
+            margin: 0 auto 2em auto;
+        }
+        .screen--name  {
+            margin:0.2em;
+            font-size: 1.4em;
+            background: $off-white-color;;
+            color: $text-color;
+        }
+    }
+
+}

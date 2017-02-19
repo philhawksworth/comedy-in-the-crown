@@ -6,7 +6,8 @@ body {
     font-weight: normal;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, 
+.screen--name {
     font-family: 'league_gothicregular';
     text-transform: uppercase;
     font-weight: normal;
@@ -75,7 +76,8 @@ h3.subtitle {
    margin-bottom: 0.5em;
 }
 
-h4 {
+h4,
+.screen--name {
     display: inline-block;
     line-height: 0.9em;
     padding: 0.5em 1em;
