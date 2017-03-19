@@ -60,14 +60,20 @@ header {
     .contact {
       border-top: solid 2px #fff;
       border-bottom: solid 2px #fff;
-      padding: 0.4em 0.2em;
+      padding: 0.5em 0.2em;
       font-size: 0.7em;
 
-      @include bp(mid) {
-        padding:0.5em 1em;
+      @include bp(narrow) {
+        padding:0.5em 0.4em;
         font-size: 0.8em;
       }
-
+      @include bp(mid) {
+        padding:0.5em 1em;
+        font-size: 0.9em;
+      }
+      @include bp(wide) {
+        font-size: 1.2em;
+      }
     }
 
 }
