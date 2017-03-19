@@ -15,8 +15,8 @@ body {
 }
 
 .container {
-    margin:0 auto;
-    padding: 2em;
+  margin:0 auto;
+  padding: 2em;
 }
 
 
@@ -55,10 +55,19 @@ header {
     }
 
     .acts,
-    .dates {
-        border-top: solid 2px #fff;
-        border-bottom: solid 2px #fff;
+    .dates,
+    .photos,
+    .contact {
+      border-top: solid 2px #fff;
+      border-bottom: solid 2px #fff;
+      padding: 0.4em 0.2em;
+      font-size: 0.7em;
+
+      @include bp(mid) {
         padding:0.5em 1em;
+        font-size: 0.8em;
+      }
+
     }
 
 }
@@ -208,14 +217,14 @@ img.mic {
     footer {
         display: none;
     }
-    
+
 
     .screen--banner {
         font-size: 8em;
     }
 
     .screen--featuring {
-        
+
         position: absolute;
         bottom: 0;
         left: 0;

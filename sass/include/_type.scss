@@ -6,7 +6,7 @@ body {
     font-weight: normal;
 }
 
-h1, h2, h3, h4, 
+h1, h2, h3, h4,
 .screen--name {
     font-family: 'league_gothicregular';
     text-transform: uppercase;
@@ -124,17 +124,29 @@ h2 a {
 }
 
 .navigation {
+
     list-style: none;
+    margin: 0 -1em;
+
+    @include bp(mid) {
+      margin: 0;
+    }
+
     li {
-        display: inline;
+      display: inline;
+      padding: 0.2em 0.1em;
+
+      @include bp(mid) {
         padding: 0.2em 0.2em;
+      }
+
     }
     a {
         font-size: 0.8em;
         vertical-align: middle;
 
         @include bp(wide) {
-            font-size: 1.1em;
+          font-size: 1.1em;
         }
 
         &:visited,

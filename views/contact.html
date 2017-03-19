@@ -1,0 +1,11 @@
+---
+api: [api/acts.json]
+body: contact
+---
+
+{% set pageBody = "./pages/" + body + ".html"  %}
+{% extends baseTemplate %}
+
+{% block content %}
+{% include pageBody %}
+{% endblock %}

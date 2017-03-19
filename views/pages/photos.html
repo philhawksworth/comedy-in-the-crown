@@ -1,0 +1,21 @@
+{% import "partials/components.html" as comp %}
+{% set pageClass = "photos" %}
+
+<div class="hero">
+  <h1>Photos</h1>
+  <p>
+    A selection of photos from a few of our gigs.
+    For more photos from each and every gig night, take a look at our <a href="https://www.facebook.com/comedyinthecrown">events pages on Facebook</a>
+  </p>
+</div>
+<div class="container">
+  <div class="gallery">
+  {%- for item in api.nights -%}
+    {% if item.pictures.length > 0 %}
+      {%- for photo in item.pictures -%}
+        <a href="https:{{ photo.url }}"><img src="https:{{ photo.url }}?h=100&w=100&fit=thumb" alt="{{ photo.title }}" /></a>
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+  </div>
+</div>
