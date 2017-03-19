@@ -299,6 +299,7 @@ gulp.task('serve', function() {
 
 // Our task runners
 gulp.task('default', ['build:local']);
+gulp.task('build', ['build:local']);
 gulp.task('watch', ['sass:watch', 'templates:watch']);
 
 
