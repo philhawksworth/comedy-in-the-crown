@@ -21,12 +21,12 @@
   <p>
     Sign up to our newsletter for information about upcoming special events. No spam, no nonsense. We promise.
   </p>
-  <form name="newsletter" action="/registered/" netlify netlify-honeypot="real-name">
+  <form name="newsletter" action="/registered/" netlify netlify-honeypot="full-name">
     <p>
       <label for="email">Your email address:</label>
       <input type="email" name="email">
     </p>
-    <p class="netlify-filter"><label for="real-name">Really?<input name="real-name"></label></p>
+    <p class="netlify-filter"><label for="full-name">Full name</label><input name="full-name"></p>
     <input type="submit" value="Sign me up for news" />
   </form>
 
@@ -36,7 +36,7 @@
     We welcome seasoned performers and curious first-timers alike. We have a lot of demand for our 7 minute spots, so the more flexible you can be about when in the future you'd like to perform, the easier it will be to grab your moment.
   </p>
   <p>Tell us a little about yourself and we'll get back to you as soon as we can.</p>
-  <form name="register" action="/thanks/" netlify netlify-honeypot="real-name">
+  <form name="register" action="/thanks/" netlify netlify-honeypot="full-name">
     <p>
       <label for="name">Your name:</label>
       <input type="text" name="name">
@@ -46,10 +46,10 @@
       <input type="email" name="email">
     </p>
     <p>
-      <label for="message"l>Message:</label>
+      <label for="message">Message:</label>
       <textarea name="message"></textarea>
     </p>
-    <p class="netlify-filter"><label for="real-name">Really?<input name="real-name"></label></p>
+    <p class="netlify-filter"><label for="full-name">Full name</label><input name="full-name"></p>
     <input type="submit" value="Request a spot" />
   </form>
 
