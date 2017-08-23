@@ -56,7 +56,7 @@ gulp.task('clean', function () {
 // the template's front-matter.
 // Additional data can be passed in the front-matter
 gulp.task('generate', () =>
-  gulp.src(['views/*.html', '!views/night.html'])
+  gulp.src(['views/*.html', '!views/night.html', '!views/post.html'])
     .pipe(data(function(file) {
       var content = fm(String(file.contents));
       var apiData = {};
@@ -126,6 +126,47 @@ gulp.task('generate:nights', function() {
 
 
 
+// Generate a page for each blog post
+gulp.task('generate:posts', function() {
+  var apiData = require("./api/posts.json");
+  var data = {
+    "baseTemplate" : "./layouts/base.html",
+    "body" : "post"
+  };
+
+  // create each event page
+  for (var item = 0; item < apiData.length; item++) {
+    // data.api = {"posts" : apiData};
+    // data.path = dates.urlify(apiData[item].slug);
+    // var url = './dist/news/' + dates.urlify(apiData[item].slug);
+
+    data.api = {"post" : apiData[item]};
+
+    console.log("post:", apiData[item]);
+
+    var url = './dist/news/' + apiData[item].slug;
+
+    var out = env.render("post.html", data);
+    mkdirp.sync(url);
+    fs.writeFileSync(url + "/index.html", out)
+  }
+
+  // perform the css injection to each of the new pages.
+  gulp.src('./dist/news/*/index.html')
+    .pipe(inject(gulp.src(['./dist/style/base.css']), {
+      starttag: '<!-- inject:css -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        return file.contents.toString('utf8')
+      }
+    }))
+    .pipe(gulp.dest('dist/news/'))
+});
+
+
+
+
+
 // copy the api files to the output directory
 gulp.task('api', () =>
   gulp.src('api/**/*.json')
@@ -134,7 +175,7 @@ gulp.task('api', () =>
 
 
 // Get data from the cloud CMS and stash it locally
-gulp.task('get', ['get:acts', 'get:nights']);
+gulp.task('get', ['get:acts', 'get:nights',  'get:posts']);
 
 
 
@@ -144,6 +185,15 @@ gulp.task('get:acts', function() {
     fs.writeFileSync('api/acts.json', JSON.stringify(acts));
   });
 });
+
+
+// Get the blog posts data from the cloud CMS and stash it locally
+gulp.task('get:posts', function() {
+  getBatch('post', 0, function(posts){
+    fs.writeFileSync('api/posts.json', JSON.stringify(posts));
+  });
+});
+
 
 
 
@@ -310,6 +360,7 @@ gulp.task('build:local', function(callback) {
     'generate',
     ['images', 'scripts', 'precompile', 'api', 'configs'],
     'generate:nights',
+    'generate:posts',
     callback
   );
 });
