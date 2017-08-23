@@ -9,7 +9,6 @@
     "contentful": "^3.5.0",
     "critical": "^0.7.3",
     "front-matter": "^2.1.0",
-    "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-data": "^1.2.1",
@@ -25,6 +24,7 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
+    "gulp": "^3.9.1",
     "gulp-webserver": "^0.9.1"
   }
 }

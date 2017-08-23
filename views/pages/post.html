@@ -1,0 +1,18 @@
+{% import "partials/components.html" as comp %}
+{% set pageClass = "post" %}
+<div class="hero night-hero">
+  <h1>{{ api.post.title }}</h1>
+  <p>
+    {{ api.post.publishDate }}
+  </p>
+</div>
+<div class="container">
+
+  <div class="excerpt">
+    {{ api.post.introText }}
+  </div>
+  <div class="content">
+    {{ api.post.mainText }}
+  </div>
+</div>
+

@@ -1,0 +1,11 @@
+---
+api: [api/posts.json]
+body: post
+---
+{% set pageBody = "./pages/" + body + ".html"  %}
+{% extends baseTemplate %}
+
+{% block content %}
+{% include pageBody %}
+{% endblock %}
+
