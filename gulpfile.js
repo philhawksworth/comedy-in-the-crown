@@ -69,6 +69,7 @@ gulp.task('generate', () =>
       content.attributes.api = apiData ;
       content.attributes.baseTemplate = "./layouts/base.html";
       content.attributes.printTemplate = "./layouts/print.html";
+      content.attributes.screenTemplate = "./layouts/display.html";
       // build a configs object for use as a reference in the client
       var name = "/" + file.path.replace(file.base, "").replace(".html","");
       if(name == "/index") {
@@ -292,12 +293,16 @@ gulp.task('precompile', () =>
 
 
 // Combine and compress javascript
-gulp.task('scripts', () =>
+gulp.task('scripts', function() {
   gulp.src(['js/libs/*.js', "js/dates.js", "js/views.js", "js/configs.js", "js/analytics.js"])
     .pipe(concat('concat.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('dist/js'))
-);
+    .pipe(gulp.dest('dist/js'));
+  gulp.src(['js/screen.js'])
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/js'));
+});
+
 
 
 // Optimise images and add to the dist
@@ -316,16 +321,10 @@ gulp.task('configs', () =>
 
 // Compile CSS from Sass
 gulp.task('sass', () =>
-  gulp.src(['sass/base.scss'])
+  gulp.src(['sass/*.scss'])
     .pipe(sass({outputStyle: 'compressed', includePaths: ['./sass/include']}).on('error', sass.logError))
     .pipe(gulp.dest('dist/style'))
 );
-
-gulp.task('sass:print', function() {
-  gulp.src(['sass/print.scss'])
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('dist/style'));
-});
 
 
 // Watchers
@@ -356,7 +355,7 @@ gulp.task('watch', ['sass:watch', 'templates:watch']);
 gulp.task('build:local', function(callback) {
   runSequence(
     'clean',
-    ['sass', 'sass:print'],
+    'sass',
     'generate',
     ['images', 'scripts', 'precompile', 'api', 'configs'],
     'generate:nights',

@@ -1,0 +1,132 @@
+@import 'fonts';
+@import 'mixins';
+
+* {
+  margin: 0;
+  padding: 0;
+  overflow: none;
+  color: #fff;
+}
+
+body {
+  font-family: 'league_gothicregular';
+}
+
+.slide,
+.sub-slide {
+  display: none;
+  height: 100vh;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #900;
+  background: url('/images/curtain.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.active {
+  display: flex;
+}
+
+.lights-off {
+  filter: hue-rotate(210deg) saturate(1);
+}
+
+.lights-off::after {
+  background: radial-gradient(circle at center, rgba(0,0,50,0.1), rgba(0,0,50,0.9) 90%);
+  background-size: cover;
+  content: '';
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  mix-blend-mode: color-burn;
+}
+
+h1 {
+  font-size: 8vw;
+  text-transform: uppercase;
+  font-weight: normal;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+header {
+  font-size: 4vw;
+  text-align: center;
+  width:100%;
+  display: block;
+  position: absolute;
+  top: 1em;
+}
+
+footer {
+  font-size: 4vw;
+  text-align: center;
+  width:100%;
+  display: block;
+  position: absolute;
+  bottom: 1em;
+
+  h1.crown {
+    font-size: 3.4vw;
+    line-height: 1em;
+    border-bottom: solid 0.12em #fff;
+  }
+  img.mic {
+    width: 3.6vw;
+    vertical-align: bottom;
+  }
+
+}
+
+.slide-title {
+
+  h1 {
+    font-size: 10vw;
+    line-height: 1em;
+    border-bottom: solid 0.12em #fff;
+  }
+
+  .container {
+    margin-bottom: 3em;
+  }
+}
+
+img.mic {
+  width: 11vw;
+  vertical-align: bottom;
+}
+
+
+.mic-badge {
+  border-style:none;
+  overflow: none;
+  text-align: center;
+  @include circle(60px, #000, transparent, inline-block);
+  margin: 2em auto 1.5em;
+  text-indent: -9999px;
+  background-image: url('/images/mic.svg');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size:30%;
+}
+
+h2.callout {
+  text-transform: uppercase;
+  font-size: 8vw;
+  padding: 0.3em;
+  margin: 0 2em;
+  background: #fff;
+  color: #922;
+  border-radius: 8px;
+  display: inline-block;
+  position: relative;
+}
+
+.callout-odd {
+  transform: rotate(-4deg);
+}
+.callout-even {
+  transform: rotate(4deg);
+}
