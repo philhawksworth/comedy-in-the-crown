@@ -7,28 +7,65 @@ pageClass: screen
 
 {%- set futureNights = [] -%}
 {%- for item in api.nights -%}
-  {%- if item.date | upcoming -%}
-  {%- set futureNights = (futureNights.push(item),futureNights) -%}
-  {%- endif  -%}
+{%- if item.date | upcoming -%}
+{%- set futureNights = (futureNights.push(item),futureNights) -%}
+{%- endif  -%}
 {%- endfor -%}
 
 {% block content %}
 
-<div class="slide slide-title">
-  <div class="container">
-    <img src="/images/mic.svg" class="mic">
-    <h1>Comedy in the Crown</h1>
-  </div>
-  <footer>8pm to 10:30pm</footer>
-</div>
+  <div class="slide set" data-duration="5000">
 
-<div class="slide set" data-duration="1000">
+  <div class="slide slide-title">
+    <div class="container">
+      <img src="/images/mic.svg" class="mic">
+      <h1>COMEDY IN THE CROWN</h1>
+    </div>
+    <footer>8pm to 10:30pm</footer>
+  </div>
+
+  <div class="slide slide-facebook">
+    <div class="container">
+      <img src="/images/facebook.svg" class="facebook-logo">
+      <h1>facebook.com/comedyinthecrown</h1>
+    </div>
+  </div>
+
+  <div class="slide slide-title">
+    <div class="container">
+      <img src="/images/mic.svg" class="mic">
+      <h1>COMEDY IN THE CROWN</h1>
+    </div>
+    <footer>8pm to 10:30pm</footer>
+  </div>
+
+  <div class="slide slide-twitter">
+    <div class="container">
+      <img src="/images/twitter.svg" class="twitter-logo">
+      <h1>@comedyincrown</h1>
+    </div>
+  </div>
+
+  <div class="slide slide-title">
+    <div class="container">
+      <img src="/images/mic.svg" class="mic">
+      <h1>COMEDY IN THE CROWN</h1>
+    </div>
+    <footer>8pm to 10:30pm</footer>
+  </div>
+
+  <div class="slide slide-web">
+    <div class="container">
+      <span class="mic-badge">Mic</span>
+      <h1>www.comedyinthecrown.com</h1>
+    </div>
+  </div>
 
   {% set alternator = cycler("odd", "even") %}
   {% for gig in futureNights | sort(false, attribute='date') -%}
   {% if loop.first %}
   {% for act in gig.acts|sort(attribute='name') -%}
-  <div class="slide">
+  <div class="slide" data-duration="1500">
     <header>PERFORMING TONIGHT</header>
     <h2 class="callout callout-{{ alternator.next() }}">{{ act.name }}</h2>
     <footer>
@@ -40,40 +77,52 @@ pageClass: screen
   {% endif -%}
   {% endfor -%}
 
-  <div class="slide">
-    <h1>Facebook</h1>
-  </div>
-
-  <div class="slide">
-    <h1>Twitter</h1>
-  </div>
-
-  <div class="slide slide-title">
-    <div class="container">
-      <img src="/images/mic.svg" class="mic">
-      <h1>Comedy in the Crown</h1>
-    </div>
-  </div>
-
 </div>
+
+
+<div class="slide slide-running-order lights-off">
+  <h1>PLEASE TAKE YOUR SEATS</h1>
+  <p>the show will begin in just a moment</p>
+</div>
+
 
 <div class="slide slide-title">
   <div class="container">
     <img src="/images/mic.svg" class="mic">
-    <h1>Comedy in the Crown</h1>
+    <h1>COMEDY IN THE CROWN</h1>
   </div>
-  <footer>8pm to 10:30pm</footer>
 </div>
 
+<div class="slide slide-title subtle">
+    <div class="container">
+      <img src="/images/mic.svg" class="mic">
+      <h1>COMEDY IN THE CROWN</h1>
+    </div>
+  </div>
 
 
 <div class="slide slide-running-order lights-off">
-  <h1>Tonight:</h1>
+  <h1>INTERMISSION</h1>
+  <p>Time enough for a visit to the bar</p>
+</div>
+
+<div class="slide slide-running-order lights-off">
+  <h1>PLEASE TAKE YOUR SEATS</h1>
+  <p>the show will begin in just a moment</p>
+</div>
+
+<div class="slide slide-title subtle">
+  <div class="container">
+    <img src="/images/mic.svg" class="mic">
+    <h1>COMEDY IN THE CROWN</h1>
+  </div>
 </div>
 
 
 <div class="slide slide-running-order lights-off">
-  <h1>Last slide:</h1>
+  <header>NEXT SHOW</header>
+  <h2 class="callout callout-odd">October 10th, 8pm</h2>
+  <footer>Doors: 7:30pm</footer>
 </div>
 
 {% endblock %}

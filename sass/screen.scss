@@ -12,6 +12,12 @@ body {
   font-family: 'league_gothicregular';
 }
 
+@media all and (display-mode: fullscreen) {
+  body {
+    cursor:none;
+  }
+}
+
 .slide,
 .sub-slide {
   display: none;
@@ -44,10 +50,13 @@ body {
 
 h1 {
   font-size: 8vw;
-  text-transform: uppercase;
   font-weight: normal;
-  display: inline-block;
+  display: block;
   margin: 0 auto;
+}
+
+p {
+  font-size: 4vw;
 }
 
 header {
@@ -68,6 +77,8 @@ footer {
   bottom: 1em;
 
   h1.crown {
+    text-transform: uppercase;
+    display: inline-block;
     font-size: 3.4vw;
     line-height: 1em;
     border-bottom: solid 0.12em #fff;
@@ -79,11 +90,16 @@ footer {
 
 }
 
+.container {
+  text-align: center;
+}
+
 .slide-title {
 
   h1 {
     font-size: 10vw;
     line-height: 1em;
+    display: inline-block;
     border-bottom: solid 0.12em #fff;
   }
 
@@ -92,17 +108,21 @@ footer {
   }
 }
 
+
+img.facebook-logo,
+img.twitter-logo  {
+  width: 11vw;
+}
+
 img.mic {
   width: 11vw;
   vertical-align: bottom;
 }
 
-
 .mic-badge {
-  border-style:none;
   overflow: none;
   text-align: center;
-  @include circle(60px, #000, transparent, inline-block);
+  @include circle(11vw, transparent, #fff, inline-block);
   margin: 2em auto 1.5em;
   text-indent: -9999px;
   background-image: url('/images/mic.svg');
@@ -129,4 +149,17 @@ h2.callout {
 }
 .callout-even {
   transform: rotate(4deg);
+}
+
+.subtle {
+  filter: brightness(0.6);
+
+  h1,
+  h2,
+  h3,
+  p,
+  .mic {
+    opacity: 0.8;
+    border-color: rgba(255,255,255,0.8);
+  }
 }
