@@ -15,15 +15,14 @@ pageClass: screen
 {% block content %}
 
 <div class="slide slide-title">
-    <div class="container">
-      <img src="/images/mic.svg" class="mic">
-      <h1>COMEDY IN THE CROWN</h1>
-    </div>
-    <footer>8pm to 10:30pm</footer>
+  <div class="container">
+    <img src="/images/mic.svg" class="mic">
+    <h1>COMEDY IN THE CROWN</h1>
   </div>
+</div>
 
 
-  <div class="slide set" data-duration="3000">
+<div class="slide set" data-duration="5000">
 
   <div class="slide slide-title">
     <div class="container">
@@ -74,7 +73,7 @@ pageClass: screen
   {% for gig in futureNights | sort(false, attribute='date') -%}
     {% if loop.first %}
       {% for act in gig.acts|sort(attribute='name') -%}
-      <div class="slide" data-duration="1500">
+      <div class="slide" data-duration="3000">
         <header>PERFORMING TONIGHT</header>
         <h2 class="callout callout-{{ alternator.next() }}">{{ act.name }}</h2>
         <footer>
@@ -105,33 +104,33 @@ pageClass: screen
 
 <div class="slide set" data-duration="5000">
 
-  <div class="slide lights-off">
+  <div class="slide">
     <h1>INTERMISSION</h1>
     <p>Time enough for a visit to the bar</p>
   </div>
 
-  <div class="slide slide-facebook lights-off">
+  <div class="slide slide-facebook">
     <div class="container">
       <img src="/images/facebook.svg" class="facebook-logo">
       <h1>facebook.com/comedyinthecrown</h1>
     </div>
   </div>
 
-  <div class="slide slide-twitter lights-off">
+  <div class="slide slide-twitter">
     <div class="container">
       <img src="/images/twitter.svg" class="twitter-logo">
       <h1>@comedyincrown</h1>
     </div>
   </div>
 
-  <div class="slide slide-web lights-off">
+  <div class="slide slide-web">
     <div class="container">
       <span class="mic-badge">Mic</span>
       <h1>www.comedyinthecrown.com</h1>
     </div>
   </div>
 
-  <div class="slide slide-title lights-off">
+  <div class="slide slide-title">
     <div class="container">
       <img src="/images/mic.svg" class="mic">
       <h1>COMEDY IN THE CROWN</h1>
@@ -156,21 +155,25 @@ pageClass: screen
 </div>
 
 
-{%- for gig in futureNights | sort(false, attribute='date') -%}
-  {%- if loop.index == 2 %}
-  <div class="slide lights-off">
-    <header>NEXT SHOW</header>
-    <h2 class="callout callout-even">{{ gig.date | date }}, 8pm</h2>
-    <footer>Doors: 7:30pm</footer>
-  </div>
-  {%- endif -%}
-{%- endfor -%}
+<div class="slide set" data-duration="10000">
 
-<div class="slide slide-title lights-off">
-  <div class="container">
-    <img src="/images/mic.svg" class="mic">
-    <h1>COMEDY IN THE CROWN</h1>
+  {%- for gig in futureNights | sort(false, attribute='date') -%}
+    {%- if loop.index == 2 %}
+    <div class="slide">
+      <header>NEXT SHOW</header>
+      <h2 class="callout callout-even">{{ gig.date | date }}, 8pm</h2>
+      <footer>Doors: 7:30pm</footer>
+    </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+  <div class="slide slide-title">
+    <div class="container">
+      <img src="/images/mic.svg" class="mic">
+      <h1>COMEDY IN THE CROWN</h1>
+    </div>
   </div>
+
 </div>
 
 
