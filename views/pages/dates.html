@@ -16,22 +16,22 @@
 {% endif %}
 {% endfor %}
 <div class="container">
-  <h4>Coming Up</h4>
-  <ul class="listing">
-    {% for item in futureNights | sort(false, attribute='date') -%}
-      <li>
-        {% if loop.first -%}
-        <h2 class="sticker-next">Our next comedy night</h2>
-          {{ comp.gigDetails(item, "full") }}
-        {%- else -%}
-          {{ comp.gigDetails(item, "short") }}
-        {%- endif -%}
-      </li>
-      {% if not loop.last -%}
-      <a href="#top" data-scroll class="stamp mic">Back to top</a>
-      {% endif -%}
-    {% endfor -%}
-  </ul>
+
+  <h2><a href="https://www.humdingerscomedy.com">Comedy In The Crown has moved on</a></h2>
+  <h3 class="subtitle">New Venue. New name.</h3>
+  <p>
+    We're not currently planning any more gigs at The Crown in St Albans. But don't worry, the same team who brought you all of these great nights are still working hard to bring comedy to St Albans. We're now in a different venue, and under a differnet name.
+  </p>
+  <p>
+  🎉 ✨ 🎉 ✨ 🎉 ✨ 🎉
+  </p>
+  <p>
+    We are now <a href="https://www.humdingerscomedy.com">Humdingers Comedy</a>, and you'll find us most months at the lovely Abbey Theatre in St Albans. Head to <a href="https://www.humdingerscomedy.com">humdingerscomedy.com</a> to take a look at the great acts who have already performed at Hundingers Comedy, and who we have coming up!
+  </p>
+    <p>
+  🎉 ✨ 🎉 ✨ 🎉 ✨ 🎉
+  </p>
+
   <h4>Nights gone by</h4>
   <ul class="listing">
     {% for item in historicNights | sort(true, attribute='date') -%}

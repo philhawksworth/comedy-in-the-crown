@@ -14,12 +14,28 @@
 {%- endif -%}
 {%- endfor -%}
 <div class="container">
-  <h2 class="sticker-next">Our next comedy night</h2>
-    {% for item in futureNights | sort(false, attribute='date') -%}
+  <h2 class="sticker-next">New Venue and New Name</h2>
+  <h2>Comedy In The Crown become Humdingers Comedy</h2>
+  <p>
+    We're not currently planning any more gigs at The Crown in St Albans. But don't worry, the same team who brought you all of these great nights are still working hard to bring comedy to St Albans. We're now in a different venue, and under a differnet name.
+  </p>
+  <p>
+  🎉 ✨ 🎉 ✨ 🎉 ✨ 🎉
+  </p>
+  <p>
+    We are now <a href="https://www.humdingerscomedy.com">Humdingers Comedy</a>, and you'll find us most months at the lovely Abbey Theatre in St Albans. Head to <a href="https://www.humdingerscomedy.com">humdingerscomedy.com</a> to take a look at the great acts who have already performed at Hundingers Comedy, and who we have coming up!
+  </p>
+    <p>
+  🎉 ✨ 🎉 ✨ 🎉 ✨ 🎉
+  </p>
+
+
+
+    {# {% for item in futureNights | sort(false, attribute='date') -%}
       {% if loop.first %}
       {{ comp.gigDetails(item, 'full') }}
       {% endif -%}
-    {% endfor -%}
+    {% endfor -%} #}
   <h2 id="where">Where to find us</h2>
   <p>
     <a href="http://www.crownstalbans.com/">The Crown</a> is a lovely pub in St Albans. Just 20 minutes from St Pancras station, we have a little more elbow room than you often find in London. The Crown also has excellent food and a cosy beer garden.
